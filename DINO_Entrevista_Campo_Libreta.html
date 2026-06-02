@@ -26,8 +26,6 @@ html{-webkit-text-size-adjust:100%}
 }
 html,body{height:100%}
 body{font-family:var(--fb);background:var(--paper);color:var(--ink);font-size:16px;font-weight:400;line-height:1.6}
-
-/* ── HEADER ── */
 .hdr{background:var(--ink);padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100}
 .hdr-title{font-family:var(--fl);font-size:1rem;color:var(--paper);font-weight:400}
 .hdr-sub{font-size:.68rem;color:var(--gold2);letter-spacing:.05em;text-transform:uppercase;font-family:var(--fb);font-weight:500}
@@ -39,25 +37,17 @@ body{font-family:var(--fb);background:var(--paper);color:var(--ink);font-size:16
 @keyframes rp{0%,100%{opacity:1}50%{opacity:.4}}
 .rec-txt{font-size:.7rem;color:var(--paper);font-weight:500;font-family:var(--fb)}
 .rec-time{font-size:.7rem;color:var(--gold2);font-family:monospace;min-width:30px}
-
-/* ── PASOS ── */
 .steps{display:flex;background:var(--paper2);border-bottom:1px solid var(--rule)}
 .step-btn{flex:1;background:none;border:none;padding:.65rem .5rem;font-family:var(--fb);font-size:.72rem;font-weight:500;color:var(--ink3);cursor:pointer;border-bottom:2px solid transparent;transition:all .18s;letter-spacing:.03em;text-transform:uppercase;-webkit-tap-highlight-color:transparent}
 .step-btn.active{color:var(--gold);border-bottom-color:var(--gold);background:var(--paper)}
-
-/* ── PANTALLAS ── */
 .screen{display:none;min-height:calc(100vh - 100px)}
 .screen.active{display:block;animation:fi .2s ease}
 @keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .inner{padding:1.1rem 1rem 5.5rem;max-width:680px;margin:0 auto}
-
-/* ── TIPOGRAFÍA ── */
 .titulo-sec{font-family:var(--fl);font-size:1.45rem;font-weight:400;color:var(--ink);margin-bottom:.25rem;line-height:1.2}
 .intro-sec{font-size:.85rem;color:var(--ink3);line-height:1.65;font-style:italic;margin-bottom:1.3rem;border-left:2px solid var(--gold2);padding-left:.8rem}
 .lbl{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:.05rem 0 .5rem;display:flex;align-items:center;gap:.5rem}
 .lbl::after{content:'';flex:1;height:1px;background:var(--rule)}
-
-/* ── CAMPOS ── */
 .campo{margin-bottom:.9rem}
 .campo label{display:block;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.35rem}
 .campo input,.campo textarea,.campo select{width:100%;background:var(--paper);border:1.5px solid var(--rule2);border-radius:var(--r);padding:.7rem .9rem;font-size:1rem;font-family:var(--fb);color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none;line-height:1.5;resize:none}
@@ -66,15 +56,10 @@ body{font-family:var(--fb);background:var(--paper);color:var(--ink);font-size:16
 .campo select option{background:var(--paper);color:var(--ink)}
 .campo-fila{display:grid;gap:.8rem}
 @media(min-width:480px){.campo-fila-2{grid-template-columns:1fr 1fr}}
-
-/* ── CHIPS PERFIL ── */
 .perfil-chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1rem}
 .chip-perfil{font-size:.78rem;font-weight:500;padding:.38rem .85rem;border-radius:20px;border:1.5px solid var(--rule2);background:var(--paper);color:var(--ink3);cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent}
 .chip-perfil.sel{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-
-/* ── GUION DESPLEGABLE ── */
 .guion-toggle{display:flex;align-items:center;justify-content:space-between;background:var(--paper2);border:1px solid var(--rule);border-radius:var(--r);padding:.65rem .9rem;cursor:pointer;margin-bottom:.8rem;transition:background .15s;-webkit-tap-highlight-color:transparent}
-.guion-toggle:hover{background:var(--paper3)}
 .guion-toggle.open{border-radius:var(--r) var(--r) 0 0}
 .gt-label{font-size:.8rem;font-weight:500;color:var(--ink2)}
 .gt-sub{font-size:.72rem;color:var(--ink3);margin-top:.1rem}
@@ -89,23 +74,17 @@ body{font-family:var(--fb);background:var(--paper);color:var(--ink);font-size:16
 .pq-num{flex-shrink:0;width:18px;height:18px;border-radius:50%;background:var(--paper3);font-size:.6rem;font-weight:700;color:var(--ink3);display:flex;align-items:center;justify-content:center;margin-top:.1rem}
 .pq-texto{flex:1}
 .pq-guia{font-size:.74rem;color:var(--ink3);font-style:italic;margin-top:.15rem;display:block}
-
-/* ── NOTAS ── */
 .notas-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
 .notas-label-txt{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
 .notas-hint{font-size:.7rem;color:var(--ink3);font-style:italic}
 .notas-main{width:100%;min-height:340px;background:var(--paper);border:1.5px solid var(--rule2);border-radius:var(--r);padding:.9rem 1rem;font-size:1rem;font-family:var(--fb);color:var(--ink);outline:none;line-height:1.8;resize:vertical;transition:border-color .15s,box-shadow .15s;background-image:repeating-linear-gradient(transparent,transparent calc(1.8em - 1px),rgba(200,190,170,.35) calc(1.8em - 1px),rgba(200,190,170,.35) 1.8em);background-attachment:local}
 .notas-main:focus{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(184,134,42,.1)}
 .notas-main::placeholder{color:var(--rule2);font-style:italic}
-
-/* ── CITA ── */
 .cita-rapida{display:flex;gap:.6rem;margin-top:.7rem;align-items:flex-start}
 .cita-icon{flex-shrink:0;font-family:var(--fl);font-size:2rem;color:var(--gold2);line-height:.8;margin-top:.2rem}
 .cita-rapida textarea{flex:1;background:var(--paper);border:1.5px solid var(--rule2);border-left:2px solid var(--gold2);border-radius:0 var(--r) var(--r) 0;padding:.6rem .8rem;font-size:.92rem;font-family:var(--fl);font-style:italic;color:var(--ink);outline:none;resize:none;min-height:70px;line-height:1.6;transition:border-color .15s}
 .cita-rapida textarea:focus{border-color:var(--gold2);border-left-color:var(--gold)}
 .cita-rapida textarea::placeholder{color:var(--rule2)}
-
-/* ── HIPÓTESIS ── */
 .hipot-item{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);padding:.8rem 1rem;margin-bottom:.5rem;display:grid;grid-template-columns:36px 1fr auto;align-items:center;gap:.7rem;transition:border-color .2s,background .2s}
 .hipot-item.h-ok{background:var(--ok-bg);border-color:rgba(42,102,68,.3)}
 .hipot-item.h-mod{background:var(--mod-bg);border-color:rgba(122,90,16,.3)}
@@ -117,49 +96,31 @@ body{font-family:var(--fb);background:var(--paper);color:var(--ink);font-size:16
 .h-btn.h-ok{background:var(--ok-bg);color:var(--ok);border-color:rgba(42,102,68,.4)}
 .h-btn.h-mod{background:var(--mod-bg);color:var(--mod);border-color:rgba(122,90,16,.3)}
 .h-btn.h-no{background:var(--warn-bg);color:var(--warn);border-color:rgba(140,48,32,.35)}
-
-/* ── BOTONES ── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;font-family:var(--fb);font-size:.88rem;font-weight:500;padding:.65rem 1.2rem;border-radius:var(--r);border:none;cursor:pointer;transition:all .18s;-webkit-tap-highlight-color:transparent;white-space:nowrap}
 .btn-ink{background:var(--ink);color:var(--paper)}
 .btn-ink:hover{background:var(--ink2)}
 .btn-gold{background:var(--gold);color:#fff;font-weight:600}
-.btn-gold:hover{background:var(--gold2)}
 .btn-ghost{background:transparent;border:1.5px solid var(--rule2);color:var(--ink2)}
-.btn-ghost:hover{border-color:var(--ink2)}
 .btn-ok{background:var(--ok-bg);color:var(--ok);border:1px solid rgba(42,102,68,.3)}
 .btn-full{width:100%;padding:.8rem}
-
-/* ── PRIORIDAD ── */
 .prioridad-btns{display:flex;gap:.5rem;margin-bottom:1rem}
 .prio-btn{flex:1;padding:.55rem;border-radius:6px;border:1.5px solid var(--rule2);background:var(--paper2);color:var(--ink3);font-family:var(--fb);font-size:.8rem;font-weight:500;cursor:pointer;transition:all .15s;text-align:center;-webkit-tap-highlight-color:transparent}
 .prio-btn.sel-baja{background:#f0f0f0;color:#666;border-color:#ccc}
 .prio-btn.sel-media{background:var(--mod-bg);color:var(--mod);border-color:rgba(122,90,16,.4)}
 .prio-btn.sel-alta{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-
-/* ── EXPORT ── */
 .export-card{background:var(--paper2);border:1px solid var(--rule);border-radius:var(--r);padding:1rem 1.1rem;margin-bottom:.7rem}
 .export-card h4{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
 .export-card p{font-size:.82rem;color:var(--ink3);line-height:1.6;margin-bottom:.8rem}
 .visor{width:100%;min-height:160px;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:.7rem .9rem;font-size:.8rem;font-family:'SF Mono',Consolas,monospace;color:var(--ink2);line-height:1.6;outline:none;resize:vertical;-webkit-user-select:text;user-select:text}
-
-/* ── SEPARADOR ── */
+.audio-panel{background:var(--paper2);border:1px solid var(--rule);border-radius:var(--r);padding:.8rem 1rem;margin-bottom:.8rem}
+.audio-panel-lbl{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
 .div-sep{border:none;border-top:1px solid var(--rule);margin:1.2rem 0}
-
-/* ── BARRA INFERIOR ── */
 .bottom{position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;padding:.55rem 1rem;z-index:200;box-shadow:0 -4px 16px rgba(0,0,0,.06)}
 .bottom-info{font-size:.7rem;color:var(--ink3);font-style:italic}
 .bottom-info strong{color:var(--gold);font-style:normal;font-weight:600}
-
-/* ── TOAST ── */
 .toast{position:fixed;top:1rem;left:50%;transform:translateX(-50%) translateY(-70px);background:var(--ink);color:var(--paper);font-size:.8rem;font-weight:500;padding:.45rem 1rem;border-radius:8px;z-index:999;transition:transform .25s ease;white-space:nowrap;pointer-events:none;box-shadow:0 6px 20px rgba(0,0,0,.2);font-family:var(--fb)}
 .toast.show{transform:translateX(-50%) translateY(0)}
-
-@media print{
-  .hdr,.steps,.bottom{display:none!important}
-  .screen{display:block!important;min-height:auto}
-  body{background:#fff;font-size:11pt;color:#000}
-  .notas-main,.visor{background:#fafafa;border-color:#ccc;background-image:none}
-}
+@media print{.hdr,.steps,.bottom{display:none!important}.screen{display:block!important;min-height:auto}body{background:#fff;font-size:11pt;color:#000}.notas-main,.visor{background:#fafafa;border-color:#ccc;background-image:none}}
 </style>
 </head>
 <body>
@@ -185,12 +146,10 @@ body{font-family:var(--fb);background:var(--paper);color:var(--ink);font-size:16
   <button class="step-btn" id="tab2" onclick="ir(2)">3 · Cierre</button>
 </nav>
 
-<!-- ══ PANTALLA 1 · INICIO ══ -->
 <section class="screen active" id="s0">
 <div class="inner">
   <h1 class="titulo-sec">Antes de empezar</h1>
   <p class="intro-sec">Dos minutos para registrar el contexto. Cuanto más preciso ahora, más útil al analizar.</p>
-
   <div class="campo-fila campo-fila-2">
     <div class="campo"><label>Código</label><input type="text" id="f-codigo" placeholder="DINO-2A-V-001"></div>
     <div class="campo"><label>Fecha</label><input type="date" id="f-fecha"></div>
@@ -199,50 +158,47 @@ body{font-family:var(--fb);background:var(--paper);color:var(--ink);font-size:16
     <div class="campo"><label>Entrevistador/a</label><input type="text" id="f-quien" placeholder="Nombre"></div>
     <div class="campo"><label>Momento</label>
       <select id="f-momento">
-        <option value="">Seleccionar…</option>
+        <option value="">Seleccionar...</option>
         <option value="durante">Durante la visita</option>
         <option value="final">Final de visita</option>
         <option value="posterior">Posterior</option>
       </select>
     </div>
   </div>
-
   <div class="campo">
     <label>Perfil · toca para seleccionar</label>
-    <div class="perfil-chips" id="perfilChips">
-      <span class="chip-perfil" onclick="togglePerfil(this)" data-v="familia-pequenos">Familia · niños pequeños</span>
-      <span class="chip-perfil" onclick="togglePerfil(this)" data-v="familia-mixta">Familia · edades mixtas</span>
-      <span class="chip-perfil" onclick="togglePerfil(this)" data-v="turista">Turista / fuera Aragón</span>
-      <span class="chip-perfil" onclick="togglePerfil(this)" data-v="repetidor">Repetidor</span>
-      <span class="chip-perfil" onclick="togglePerfil(this)" data-v="cultural">Interés científico</span>
-      <span class="chip-perfil" onclick="togglePerfil(this)" data-v="ocio">Ocio familiar</span>
-      <span class="chip-perfil" onclick="togglePerfil(this)" data-v="escolar">Grupo escolar</span>
-      <span class="chip-perfil" onclick="togglePerfil(this)" data-v="accesibilidad">Acc. especiales</span>
+    <div class="perfil-chips">
+      <span class="chip-perfil" data-v="familia-pequenos" onclick="togglePerfil(this)">Familia niños pequeños</span>
+      <span class="chip-perfil" data-v="familia-mixta" onclick="togglePerfil(this)">Familia edades mixtas</span>
+      <span class="chip-perfil" data-v="turista" onclick="togglePerfil(this)">Turista / fuera Aragón</span>
+      <span class="chip-perfil" data-v="repetidor" onclick="togglePerfil(this)">Repetidor</span>
+      <span class="chip-perfil" data-v="cultural" onclick="togglePerfil(this)">Interés científico</span>
+      <span class="chip-perfil" data-v="ocio" onclick="togglePerfil(this)">Ocio familiar</span>
+      <span class="chip-perfil" data-v="escolar" onclick="togglePerfil(this)">Grupo escolar</span>
+      <span class="chip-perfil" data-v="accesibilidad" onclick="togglePerfil(this)">Acc. especiales</span>
     </div>
   </div>
-
   <div class="campo-fila campo-fila-2">
     <div class="campo"><label>Composición del grupo</label><input type="text" id="f-grupo" placeholder="2 adultos, 3 niños (4, 7, 11)"></div>
-    <div class="campo"><label>Procedencia</label><input type="text" id="f-procedencia" placeholder="Zaragoza, Madrid…"></div>
+    <div class="campo"><label>Procedencia</label><input type="text" id="f-procedencia" placeholder="Zaragoza, Madrid..."></div>
   </div>
-  <div class="campo"><label>Contexto previo · opcional</label><textarea id="f-contexto" rows="2" placeholder="Algo que hayas observado antes de empezar…"></textarea></div>
-
+  <div class="campo"><label>Contexto previo · opcional</label><textarea id="f-contexto" rows="2" placeholder="Algo que hayas observado antes de empezar..."></textarea></div>
+  <div id="audio-panel" style="display:none" class="audio-panel">
+    <div class="audio-panel-lbl">Grabacion · escucha antes de enviar</div>
+  </div>
   <button class="btn btn-ink btn-full" onclick="ir(1)">Empezar la entrevista →</button>
 </div>
 </section>
 
-<!-- ══ PANTALLA 2 · ENTREVISTA ══ -->
 <section class="screen" id="s1">
 <div class="inner">
-
   <div class="guion-toggle" id="guionToggle" onclick="toggleGuion()">
     <div>
       <div class="gt-label">Guion de referencia</div>
-      <div class="gt-sub">Toca para ver / ocultar · está para orientar, no para seguir al pie de la letra</div>
+      <div class="gt-sub">Toca para ver / ocultar · para orientar, no para seguir al pie de la letra</div>
     </div>
     <div class="gt-arrow">▼</div>
   </div>
-
   <div class="guion-panel" id="guionPanel">
     <div class="bloque-guion">
       <div class="bg-titulo">Apertura · crear el contexto y bajar la guardia</div>
@@ -264,7 +220,7 @@ body{font-family:var(--fb);background:var(--paper);color:var(--ink);font-size:16
       <div class="pregunta-ref"><div class="pq-num">10</div><div><div class="pq-texto">¿Hubo algún momento en el que no supierais qué hacer después?</div><span class="pq-guia">Desorientación, dudas, pérdida de tiempo.</span></div></div>
       <div class="pregunta-ref"><div class="pq-num">11</div><div><div class="pq-texto">¿Os resultó fácil orientaros dentro del parque?</div><span class="pq-guia">Señalética, mapa, personal, intuición.</span></div></div>
       <div class="pregunta-ref"><div class="pq-num">12</div><div><div class="pq-texto">De todo lo que habéis visto, ¿qué momento destacaríais?</div></div></div>
-      <div class="pregunta-ref"><div class="pq-num">13</div><div><div class="pq-texto">¿Hubo alguna parte que se os hiciera larga, densa o difícil de seguir?</div><span class="pq-guia">No preguntar "qué no le gustó". Preguntar qué se les hizo cuesta arriba.</span></div></div>
+      <div class="pregunta-ref"><div class="pq-num">13</div><div><div class="pq-texto">¿Hubo alguna parte que se os hiciera larga, densa o difícil de seguir?</div><span class="pq-guia">No preguntar qué no le gustó. Preguntar qué se les hizo cuesta arriba.</span></div></div>
       <div class="pregunta-ref"><div class="pq-num">14</div><div><div class="pq-texto">¿Cómo habéis vivido los tiempos de espera? ¿Y el descanso, la sombra?</div></div></div>
     </div>
     <div class="bloque-guion">
@@ -285,7 +241,7 @@ body{font-family:var(--fb);background:var(--paper);color:var(--ink);font-size:16
     <span class="notas-label-txt">Notas libres</span>
     <span class="notas-hint">escribe lo que escuchas, como lo escuchas</span>
   </div>
-  <textarea class="notas-main" id="notas-libres" placeholder="Anota aquí lo que va surgiendo: respuestas, frases, silencios, contradicciones, detalles que no preguntaste pero que aparecieron...
+  <textarea class="notas-main" id="notas-libres" placeholder="Anota aquí lo que va surgiendo: respuestas, frases, silencios, contradicciones...
 
 No hace falta seguir un orden. Solo escuchar y anotar."></textarea>
 
@@ -293,7 +249,7 @@ No hace falta seguir un orden. Solo escuchar y anotar."></textarea>
     <div class="lbl">Cita literal · para guardarla exactamente como se dijo</div>
     <div class="cita-rapida">
       <div class="cita-icon">"</div>
-      <textarea id="cita-rapida" placeholder="Escribe aquí la frase exacta, en las palabras de la persona entrevistada…"></textarea>
+      <textarea id="cita-rapida" placeholder="Escribe aquí la frase exacta, en las palabras de la persona entrevistada..."></textarea>
     </div>
   </div>
 
@@ -304,28 +260,24 @@ No hace falta seguir un orden. Solo escuchar y anotar."></textarea>
 </div>
 </section>
 
-<!-- ══ PANTALLA 3 · CIERRE ══ -->
 <section class="screen" id="s2">
 <div class="inner">
   <h1 class="titulo-sec">Antes de que se enfríe</h1>
   <p class="intro-sec">Cinco minutos ahora valen más que una hora mañana. Marca las hipótesis, anota las fricciones y envía.</p>
 
   <div class="lbl">Hipótesis · ¿qué ha emergido?</div>
-  <div id="hipotGrid">
-    <div class="hipot-item" id="hi-h1"><div class="h-cod">H1</div><div class="h-txt">La experiencia es valiosa pero difícil de leer desde el inicio</div><div class="h-acciones"><button class="h-btn" onclick="setH('h1','ok',this)">✓</button><button class="h-btn" onclick="setH('h1','mod',this)">~</button><button class="h-btn" onclick="setH('h1','no',this)">✕</button></div></div>
-    <div class="hipot-item" id="hi-h2"><div class="h-cod">H2</div><div class="h-txt">La orientación y toma de decisiones condicionan la satisfacción global</div><div class="h-acciones"><button class="h-btn" onclick="setH('h2','ok',this)">✓</button><button class="h-btn" onclick="setH('h2','mod',this)">~</button><button class="h-btn" onclick="setH('h2','no',this)">✕</button></div></div>
-    <div class="hipot-item" id="hi-h3"><div class="h-cod">H3</div><div class="h-txt">La experiencia familiar exige ritmos y apoyos específicos</div><div class="h-acciones"><button class="h-btn" onclick="setH('h3','ok',this)">✓</button><button class="h-btn" onclick="setH('h3','mod',this)">~</button><button class="h-btn" onclick="setH('h3','no',this)">✕</button></div></div>
-    <div class="hipot-item" id="hi-h4"><div class="h-cod">H4</div><div class="h-txt">El relato científico-emocional necesita continuidad en el recorrido</div><div class="h-acciones"><button class="h-btn" onclick="setH('h4','ok',this)">✓</button><button class="h-btn" onclick="setH('h4','mod',this)">~</button><button class="h-btn" onclick="setH('h4','no',this)">✕</button></div></div>
-    <div class="hipot-item" id="hi-h5"><div class="h-cod">H5</div><div class="h-txt">Restauración y tienda son momentos clave, no servicios secundarios</div><div class="h-acciones"><button class="h-btn" onclick="setH('h5','ok',this)">✓</button><button class="h-btn" onclick="setH('h5','mod',this)">~</button><button class="h-btn" onclick="setH('h5','no',this)">✕</button></div></div>
-    <div class="hipot-item" id="hi-h6"><div class="h-cod">H6</div><div class="h-txt">El equipo interno tiene conocimiento valioso no formalizado</div><div class="h-acciones"><button class="h-btn" onclick="setH('h6','ok',this)">✓</button><button class="h-btn" onclick="setH('h6','mod',this)">~</button><button class="h-btn" onclick="setH('h6','no',this)">✕</button></div></div>
-    <div class="hipot-item" id="hi-h7"><div class="h-cod">H7</div><div class="h-txt">Hay mejoras incrementales y oportunidades evolutivas diferenciadas</div><div class="h-acciones"><button class="h-btn" onclick="setH('h7','ok',this)">✓</button><button class="h-btn" onclick="setH('h7','mod',this)">~</button><button class="h-btn" onclick="setH('h7','no',this)">✕</button></div></div>
-  </div>
+  <div class="hipot-item" id="hi-h1"><div class="h-cod">H1</div><div class="h-txt">La experiencia es valiosa pero difícil de leer desde el inicio</div><div class="h-acciones"><button class="h-btn" onclick="setH('h1','ok',this)">✓</button><button class="h-btn" onclick="setH('h1','mod',this)">~</button><button class="h-btn" onclick="setH('h1','no',this)">✕</button></div></div>
+  <div class="hipot-item" id="hi-h2"><div class="h-cod">H2</div><div class="h-txt">La orientación y toma de decisiones condicionan la satisfacción global</div><div class="h-acciones"><button class="h-btn" onclick="setH('h2','ok',this)">✓</button><button class="h-btn" onclick="setH('h2','mod',this)">~</button><button class="h-btn" onclick="setH('h2','no',this)">✕</button></div></div>
+  <div class="hipot-item" id="hi-h3"><div class="h-cod">H3</div><div class="h-txt">La experiencia familiar exige ritmos y apoyos específicos</div><div class="h-acciones"><button class="h-btn" onclick="setH('h3','ok',this)">✓</button><button class="h-btn" onclick="setH('h3','mod',this)">~</button><button class="h-btn" onclick="setH('h3','no',this)">✕</button></div></div>
+  <div class="hipot-item" id="hi-h4"><div class="h-cod">H4</div><div class="h-txt">El relato científico-emocional necesita continuidad en el recorrido</div><div class="h-acciones"><button class="h-btn" onclick="setH('h4','ok',this)">✓</button><button class="h-btn" onclick="setH('h4','mod',this)">~</button><button class="h-btn" onclick="setH('h4','no',this)">✕</button></div></div>
+  <div class="hipot-item" id="hi-h5"><div class="h-cod">H5</div><div class="h-txt">Restauración y tienda son momentos clave, no servicios secundarios</div><div class="h-acciones"><button class="h-btn" onclick="setH('h5','ok',this)">✓</button><button class="h-btn" onclick="setH('h5','mod',this)">~</button><button class="h-btn" onclick="setH('h5','no',this)">✕</button></div></div>
+  <div class="hipot-item" id="hi-h6"><div class="h-cod">H6</div><div class="h-txt">El equipo interno tiene conocimiento valioso no formalizado</div><div class="h-acciones"><button class="h-btn" onclick="setH('h6','ok',this)">✓</button><button class="h-btn" onclick="setH('h6','mod',this)">~</button><button class="h-btn" onclick="setH('h6','no',this)">✕</button></div></div>
+  <div class="hipot-item" id="hi-h7"><div class="h-cod">H7</div><div class="h-txt">Hay mejoras incrementales y oportunidades evolutivas diferenciadas</div><div class="h-acciones"><button class="h-btn" onclick="setH('h7','ok',this)">✓</button><button class="h-btn" onclick="setH('h7','mod',this)">~</button><button class="h-btn" onclick="setH('h7','no',this)">✕</button></div></div>
 
   <div class="div-sep"></div>
-
-  <div class="campo"><label>Fricciones principales detectadas</label><textarea id="c-fricciones" rows="3" placeholder="Lo que no funcionó, donde hubo duda, tensión o pérdida…"></textarea></div>
-  <div class="campo"><label>Momentos de valor</label><textarea id="c-valor" rows="3" placeholder="Lo que generó emoción, sorpresa positiva, recuerdo…"></textarea></div>
-  <div class="campo"><label>Oportunidades de diseño</label><textarea id="c-oportunidades" rows="2" placeholder="Pistas para el rediseño del servicio que han emergido…"></textarea></div>
+  <div class="campo"><label>Fricciones principales detectadas</label><textarea id="c-fricciones" rows="3" placeholder="Lo que no funcionó, donde hubo duda, tensión o pérdida..."></textarea></div>
+  <div class="campo"><label>Momentos de valor</label><textarea id="c-valor" rows="3" placeholder="Lo que generó emoción, sorpresa positiva, recuerdo..."></textarea></div>
+  <div class="campo"><label>Oportunidades de diseño</label><textarea id="c-oportunidades" rows="2" placeholder="Pistas para el rediseño del servicio que han emergido..."></textarea></div>
 
   <div class="lbl">Prioridad de esta entrevista</div>
   <div class="prioridad-btns">
@@ -338,8 +290,8 @@ No hace falta seguir un orden. Solo escuchar y anotar."></textarea>
   <div class="lbl">Enviar y guardar</div>
 
   <div class="export-card">
-    <h4>Enviar por email · método principal en móvil</h4>
-    <p>Abre tu app de correo con la entrevista. Envía en partes si el contenido es largo.</p>
+    <h4>Enviar por email</h4>
+    <p>Abre tu app de correo con la entrevista. Si el contenido es largo envía en partes.</p>
     <div class="campo" style="margin-bottom:.7rem"><label>Dirección</label><input type="email" id="email-dest" value="proyectos@satil.es"></div>
     <div style="display:flex;gap:.5rem;flex-wrap:wrap">
       <button class="btn btn-gold" style="flex:1" onclick="emailParte('todo')">Enviar todo</button>
@@ -356,7 +308,7 @@ No hace falta seguir un orden. Solo escuchar y anotar."></textarea>
       <button class="btn btn-ghost" style="font-size:.78rem;padding:.4rem .7rem" onclick="verTexto('sintesis')">Síntesis</button>
       <button class="btn btn-ok" style="font-size:.78rem;padding:.4rem .7rem" onclick="copiarVisor()">Copiar</button>
     </div>
-    <textarea class="visor" id="visor" readonly onclick="this.select();this.setSelectionRange(0,99999)" placeholder="Pulsa un botón para cargar los datos aquí…"></textarea>
+    <textarea class="visor" id="visor" readonly onclick="this.select();this.setSelectionRange(0,99999)" placeholder="Pulsa un botón para cargar los datos aquí..."></textarea>
     <p style="font-size:.7rem;color:var(--ink3);margin-top:.4rem;text-align:center">Si el botón no funciona: toca el texto → Seleccionar todo → Copiar</p>
   </div>
 
@@ -375,6 +327,7 @@ No hace falta seguir un orden. Solo escuchar y anotar."></textarea>
 const SK='dino_libreta_v1';
 let pantallaActual=0,perfilesSeleccionados=new Set(),hipStates={},prioridad='media';
 let grabando=false,mediaRec=null,audioChunks=[],timerInt=null,segs=0,recognition=null,transcripcion='';
+let mimeTypeUsado='',extUsada='webm';
 
 function ir(n){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -394,7 +347,7 @@ function toggleGuion(){
 function togglePerfil(el){
   el.classList.toggle('sel');
   const v=el.dataset.v;
-  if(perfilesSeleccionados.has(v))perfilesSeleccionados.delete(v);
+  if(perfilesSeleccionados.has(v)) perfilesSeleccionados.delete(v);
   else perfilesSeleccionados.add(v);
   autoguardar();
 }
@@ -417,71 +370,45 @@ function setPrio(nivel,btn){
 }
 
 async function toggleRec(){
-  if(!grabando)await iniciarRec(); else pararRec();
+  if(!grabando) await iniciarRec();
+  else pararRec();
 }
+
 async function iniciarRec(){
   try{
     const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-
-    // Detectar el formato que soporta este dispositivo
-    const formatos = [
-      'audio/mp4',        // iOS Safari / Chrome iOS
-      'audio/aac',        // iOS alternativo
-      'audio/webm;codecs=opus', // Chrome desktop/Android
-      'audio/webm',       // Firefox/Chrome
-      'audio/ogg',        // Firefox
-    ];
-    const mimeType = formatos.find(f => MediaRecorder.isTypeSupported(f)) || '';
-    const ext = mimeType.includes('mp4') || mimeType.includes('aac') ? 'm4a'
-              : mimeType.includes('ogg') ? 'ogg' : 'webm';
-
-    const opciones = mimeType ? { mimeType } : {};
-    mediaRec = new MediaRecorder(stream, opciones);
+    const formatos=['audio/mp4','audio/aac','audio/webm;codecs=opus','audio/webm','audio/ogg'];
+    mimeTypeUsado=formatos.find(f=>MediaRecorder.isTypeSupported(f))||'';
+    extUsada=mimeTypeUsado.includes('mp4')||mimeTypeUsado.includes('aac')?'m4a':mimeTypeUsado.includes('ogg')?'ogg':'webm';
+    const opciones=mimeTypeUsado?{mimeType:mimeTypeUsado}:{};
+    mediaRec=new MediaRecorder(stream,opciones);
     audioChunks=[];
-    mediaRec.ondataavailable=e=>{ if(e.data.size>0) audioChunks.push(e.data); };
+    mediaRec.ondataavailable=e=>{ if(e.data&&e.data.size>0) audioChunks.push(e.data); };
     mediaRec.onstop=()=>{
-      const tipo = mimeType || 'audio/webm';
+      const tipo=mimeTypeUsado||'audio/webm';
       const blob=new Blob(audioChunks,{type:tipo});
       const url=URL.createObjectURL(blob);
-
-      // Reproducir en pantalla para verificar antes de descargar
-      const audio = document.createElement('audio');
-      audio.controls = true;
-      audio.src = url;
-      audio.style.cssText = 'width:100%;margin:.5rem 0;border-radius:8px';
-
-      // Mostrar reproductor y botón de descarga en un panel
-      let panel = document.getElementById('audio-panel');
-      if(!panel){
-        panel = document.createElement('div');
-        panel.id = 'audio-panel';
-        panel.style.cssText = 'background:var(--paper2);border:1px solid var(--rule);border-radius:8px;padding:.8rem 1rem;margin:.8rem 0';
-        const lbl = document.createElement('div');
-        lbl.style.cssText = 'font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem';
-        lbl.textContent = 'Grabación · escucha antes de descargar';
-        panel.appendChild(lbl);
-        // Insertar después del botón de grabar, en la pantalla activa
-        const hdr = document.querySelector('.hdr-right');
-        document.querySelector('.inner').prepend(panel);
-      }
-      panel.appendChild(audio);
-
-      // Botón de descarga
-      const btnDesc = document.createElement('button');
-      btnDesc.className = 'btn btn-ghost';
-      btnDesc.style.cssText = 'width:100%;margin-top:.5rem;font-size:.82rem';
-      btnDesc.textContent = `Descargar audio (.${ext})`;
-      btnDesc.onclick = () => {
+      const panel=document.getElementById('audio-panel');
+      panel.style.display='block';
+      const audio=document.createElement('audio');
+      audio.controls=true;
+      audio.src=url;
+      audio.style.cssText='width:100%;margin:.4rem 0;border-radius:6px';
+      const btnD=document.createElement('button');
+      btnD.className='btn btn-ghost btn-full';
+      btnD.style.marginTop='.4rem';
+      btnD.textContent='Descargar audio (.'+extUsada+')';
+      btnD.onclick=()=>{
         const a=document.createElement('a');
         a.href=url;
-        a.download=`dino-audio-${val('f-codigo')||Date.now()}.${ext}`;
+        a.download='dino-audio-'+(val('f-codigo')||Date.now())+'.'+extUsada;
         a.click();
       };
-      panel.appendChild(btnDesc);
-
-      toast('Grabación lista · escúchala antes de descargar');
+      panel.appendChild(audio);
+      panel.appendChild(btnD);
+      toast('Grabacion lista');
     };
-    mediaRec.start(1000); // chunk cada segundo para mayor fiabilidad en iOS
+    mediaRec.start(1000);
     grabando=true;segs=0;
     timerInt=setInterval(()=>{
       segs++;
@@ -491,31 +418,28 @@ async function iniciarRec(){
     document.getElementById('recPill').classList.add('on');
     document.getElementById('recTxt').textContent='Grabando';
     iniciarTranscripcion();
-  }catch(e){toast('Sin acceso al micrófono');}
+  }catch(e){
+    toast('Sin acceso al microfono');
+  }
 }
-    timerInt=setInterval(()=>{
-      segs++;
-      const m=Math.floor(segs/60),s=(segs%60).toString().padStart(2,'0');
-      document.getElementById('recTime').textContent=m+':'+s;
-    },1000);
-    document.getElementById('recPill').classList.add('on');
-    document.getElementById('recTxt').textContent='Grabando';
-    iniciarTranscripcion();
-  }catch(e){toast('Sin acceso al micrófono');}
-}
+
 function pararRec(){
-  if(mediaRec)mediaRec.stop();
-  grabando=false;clearInterval(timerInt);
+  if(mediaRec) mediaRec.stop();
+  grabando=false;
+  clearInterval(timerInt);
   document.getElementById('recPill').classList.remove('on');
   document.getElementById('recTxt').textContent='Grabar';
   document.getElementById('recTime').textContent='';
-  if(recognition)try{recognition.stop();}catch(e){}
+  if(recognition) try{ recognition.stop(); }catch(e){}
 }
+
 function iniciarTranscripcion(){
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR)return;
+  if(!SR) return;
   recognition=new SR();
-  recognition.lang='es-ES';recognition.continuous=true;recognition.interimResults=false;
+  recognition.lang='es-ES';
+  recognition.continuous=true;
+  recognition.interimResults=false;
   recognition.onresult=e=>{
     for(let i=e.resultIndex;i<e.results.length;i++){
       if(e.results[i].isFinal){
@@ -523,17 +447,20 @@ function iniciarTranscripcion(){
         transcripcion+=t;
         if(pantallaActual===1){
           const el=document.getElementById('notas-libres');
-          if(el)el.value+=(el.value&&!el.value.endsWith('\n')?'\n':'')+t.trim();
+          if(el) el.value+=(el.value&&!el.value.endsWith('\n')?'\n':'')+t.trim();
         }
         autoguardar();
       }
     }
   };
-  recognition.onend=()=>{if(grabando)recognition.start();};
+  recognition.onend=()=>{ if(grabando) recognition.start(); };
   recognition.start();
 }
 
-function val(id){const el=document.getElementById(id);return el?el.value.trim():'';}
+function val(id){
+  const el=document.getElementById(id);
+  return el?el.value.trim():'';
+}
 
 function recoger(){
   return{
@@ -545,45 +472,48 @@ function recoger(){
   };
 }
 
-const HIP_TXT=['La experiencia es valiosa pero difícil de leer desde el inicio','La orientación condiciona la satisfacción global','La experiencia familiar exige ritmos y apoyos específicos','El relato científico-emocional necesita continuidad','Restauración y tienda son momentos clave','El equipo tiene conocimiento no formalizado','Hay mejoras incrementales y oportunidades evolutivas'];
-const LBL={ok:'✓ Validada',mod:'~ A ajustar',no:'✕ No aplica'};
+const HIP_TXT=['La experiencia es valiosa pero dificil de leer desde el inicio','La orientacion condiciona la satisfaccion global','La experiencia familiar exige ritmos y apoyos especificos','El relato cientifico-emocional necesita continuidad','Restauracion y tienda son momentos clave','El equipo tiene conocimiento no formalizado','Hay mejoras incrementales y oportunidades evolutivas'];
+const LBL={ok:'Validada',mod:'A ajustar',no:'No aplica'};
 
 function generarTodo(d){
-  let t=`DINÓPOLIS 25º · LIBRETA DE CAMPO · FASE 2A\n${'='.repeat(46)}\n\n`;
-  t+=`Código: ${d.codigo||'—'}  |  Fecha: ${d.fecha||'—'}\n`;
-  t+=`Entrevistador/a: ${d.quien||'—'}  |  Momento: ${d.momento||'—'}\n`;
-  t+=`Perfil: ${d.perfiles.join(', ')||'—'}\n`;
-  t+=`Grupo: ${d.grupo||'—'}  |  Procedencia: ${d.procedencia||'—'}\n`;
-  if(d.contexto)t+=`Contexto: ${d.contexto}\n`;
-  t+=`\nNOTAS DE LA ENTREVISTA\n${'─'.repeat(38)}\n${d.notas||'Sin notas.'}\n`;
-  if(d.cita)t+=`\nCITA LITERAL\n${'─'.repeat(38)}\n"${d.cita}"\n`;
-  t+=`\nHIPÓTESIS\n${'─'.repeat(38)}\n`;
+  let t='DINOPOLIS 25 - LIBRETA DE CAMPO - FASE 2A\n'+'='.repeat(44)+'\n\n';
+  t+='Codigo: '+(d.codigo||'-')+'  |  Fecha: '+(d.fecha||'-')+'\n';
+  t+='Entrevistador/a: '+(d.quien||'-')+'  |  Momento: '+(d.momento||'-')+'\n';
+  t+='Perfil: '+(d.perfiles.join(', ')||'-')+'\n';
+  t+='Grupo: '+(d.grupo||'-')+'  |  Procedencia: '+(d.procedencia||'-')+'\n';
+  if(d.contexto) t+='Contexto: '+d.contexto+'\n';
+  t+='\nNOTAS DE LA ENTREVISTA\n'+'─'.repeat(38)+'\n'+(d.notas||'Sin notas.')+'\n';
+  if(d.cita) t+='\nCITA LITERAL\n'+'─'.repeat(38)+'\n"'+d.cita+'"\n';
+  t+='\nHIPOTESIS\n'+'─'.repeat(38)+'\n';
   ['h1','h2','h3','h4','h5','h6','h7'].forEach((h,i)=>{
     const st=d.hipotesis[h];
-    t+=`${h.toUpperCase()}: ${st?LBL[st]:'· Sin valorar'} — ${HIP_TXT[i]}\n`;
+    t+=h.toUpperCase()+': '+(st?LBL[st]:'Sin valorar')+' - '+HIP_TXT[i]+'\n';
   });
-  if(d.fricciones)t+=`\nFRICCIONES\n${'─'.repeat(38)}\n${d.fricciones}\n`;
-  if(d.valor)t+=`\nMOMENTOS DE VALOR\n${'─'.repeat(38)}\n${d.valor}\n`;
-  if(d.oportunidades)t+=`\nOPORTUNIDADES\n${'─'.repeat(38)}\n${d.oportunidades}\n`;
-  t+=`\nPRIORIDAD: ${d.prioridad.toUpperCase()}\nGuardado: ${d.ts}\n`;
-  if(d.transcripcion)t+=`\nTRANSCRIPCIÓN\n${'─'.repeat(38)}\n${d.transcripcion.trim()}\n`;
+  if(d.fricciones) t+='\nFRICCIONES\n'+'─'.repeat(38)+'\n'+d.fricciones+'\n';
+  if(d.valor) t+='\nMOMENTOS DE VALOR\n'+'─'.repeat(38)+'\n'+d.valor+'\n';
+  if(d.oportunidades) t+='\nOPORTUNIDADES\n'+'─'.repeat(38)+'\n'+d.oportunidades+'\n';
+  t+='\nPRIORIDAD: '+d.prioridad.toUpperCase()+'\nGuardado: '+d.ts+'\n';
+  if(d.transcripcion) t+='\nTRANSCRIPCION\n'+'─'.repeat(38)+'\n'+d.transcripcion.trim()+'\n';
   return t;
 }
+
 function generarNotas(d){
-  let t=`NOTAS · ${d.codigo||'—'} · ${d.fecha||'—'}\n${'─'.repeat(38)}\n\n`;
+  let t='NOTAS - '+(d.codigo||'-')+' - '+(d.fecha||'-')+'\n'+'─'.repeat(38)+'\n\n';
   t+=d.notas||'Sin notas.';
-  if(d.cita)t+=`\n\nCITA: "${d.cita}"`;
+  if(d.cita) t+='\n\nCITA: "'+d.cita+'"';
   return t;
 }
+
 function generarSintesis(d){
-  const lb={ok:'✓',mod:'~',no:'✕'};
-  let t=`SÍNTESIS · ${d.codigo||'—'} · ${d.fecha||'—'}\n`;
-  t+=`${d.grupo||''} · ${d.procedencia||''} · Prioridad: ${d.prioridad.toUpperCase()}\n${'─'.repeat(44)}\n\n`;
-  t+=`HIPÓTESIS: ${['h1','h2','h3','h4','h5','h6','h7'].map(h=>d.hipotesis[h]?`${h.toUpperCase()}${lb[d.hipotesis[h]]}`:null).filter(Boolean).join('  ')}\n`;
-  if(d.fricciones)t+=`\nFricciones:\n${d.fricciones}\n`;
-  if(d.valor)t+=`\nValor:\n${d.valor}\n`;
-  if(d.cita)t+=`\nCita: "${d.cita}"\n`;
-  if(d.oportunidades)t+=`\nOportunidades:\n${d.oportunidades}\n`;
+  const lb={ok:'V',mod:'~',no:'X'};
+  let t='SINTESIS - '+(d.codigo||'-')+' - '+(d.fecha||'-')+'\n';
+  t+=(d.grupo||'')+' - '+(d.procedencia||'')+' - Prioridad: '+d.prioridad.toUpperCase()+'\n'+'─'.repeat(44)+'\n\n';
+  const hip=['h1','h2','h3','h4','h5','h6','h7'].map(h=>d.hipotesis[h]?h.toUpperCase()+lb[d.hipotesis[h]]:null).filter(Boolean).join('  ');
+  t+='HIPOTESIS: '+hip+'\n';
+  if(d.fricciones) t+='\nFricciones:\n'+d.fricciones+'\n';
+  if(d.valor) t+='\nValor:\n'+d.valor+'\n';
+  if(d.cita) t+='\nCita: "'+d.cita+'"\n';
+  if(d.oportunidades) t+='\nOportunidades:\n'+d.oportunidades+'\n';
   return t;
 }
 
@@ -593,26 +523,33 @@ function verTexto(modo){
   const v=document.getElementById('visor');
   v.value=txt;v.focus();
   setTimeout(()=>{v.select();v.setSelectionRange(0,99999);},80);
-  toast('Texto cargado · toca el área y copia');
+  toast('Texto cargado - toca el area y copia');
 }
+
 function copiarVisor(){
   const v=document.getElementById('visor');
   if(!v.value.trim()){verTexto('todo');return;}
   v.select();v.setSelectionRange(0,99999);
-  navigator.clipboard?.writeText(v.value).then(()=>toast('¡Copiado!')).catch(()=>{
-    try{document.execCommand('copy');toast('¡Copiado!');}
-    catch(e){toast('Toca el texto → Seleccionar todo → Copiar');}
-  });
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(v.value).then(()=>toast('Copiado!')).catch(()=>{
+      try{document.execCommand('copy');toast('Copiado!');}
+      catch(e){toast('Toca el texto - Seleccionar todo - Copiar');}
+    });
+  } else {
+    try{document.execCommand('copy');toast('Copiado!');}
+    catch(e){toast('Toca el texto - Seleccionar todo - Copiar');}
+  }
 }
 
 function emailParte(modo){
   const d=recoger();
-  const dest=document.getElementById('email-dest')?.value||'proyectos@satil.es';
-  const asunto=`[Dinópolis 2A] ${modo==='sintesis'?'Síntesis':modo==='notas'?'Notas':'Entrevista'} · ${d.codigo||'—'} · ${d.fecha||''}`;
+  const dest=document.getElementById('email-dest')?document.getElementById('email-dest').value:'proyectos@satil.es';
+  const etiqueta=modo==='sintesis'?'Sintesis':modo==='notas'?'Notas':'Entrevista';
+  const asunto='[Dinopolis 2A] '+etiqueta+' - '+(d.codigo||'-')+' - '+(d.fecha||'');
   const cuerpo=modo==='notas'?generarNotas(d):modo==='sintesis'?generarSintesis(d):generarTodo(d);
-  const body=cuerpo.length>1400?cuerpo.slice(0,1400)+'\n\n[Contenido truncado — ver datos en el dispositivo]':cuerpo;
-  window.location.href=`mailto:${encodeURIComponent(dest)}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(body)}`;
-  toast('Abriendo correo…');
+  const body=cuerpo.length>1400?cuerpo.slice(0,1400)+'\n\n[Contenido truncado]':cuerpo;
+  window.location.href='mailto:'+encodeURIComponent(dest)+'?subject='+encodeURIComponent(asunto)+'&body='+encodeURIComponent(body);
+  toast('Abriendo correo...');
 }
 
 function autoguardar(){
@@ -620,71 +557,79 @@ function autoguardar(){
     const d=recoger();
     localStorage.setItem(SK,JSON.stringify(d));
     const ts=new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
-    document.getElementById('bottomInfo').innerHTML=`Guardado <strong>${ts}</strong>`;
+    document.getElementById('bottomInfo').innerHTML='Guardado <strong>'+ts+'</strong>';
   }catch(e){}
 }
+
 function guardarManual(){autoguardar();toast('Guardado');}
 
 function cargar(){
   try{
     const raw=localStorage.getItem(SK);
-    if(!raw)return;
+    if(!raw) return;
     const d=JSON.parse(raw);
-    const set=(id,v)=>{const el=document.getElementById(id);if(el&&v!==undefined)el.value=v;};
-    set('f-codigo',d.codigo);set('f-fecha',d.fecha);set('f-quien',d.quien);set('f-momento',d.momento);
-    set('f-grupo',d.grupo);set('f-procedencia',d.procedencia);set('f-contexto',d.contexto);
-    set('notas-libres',d.notas);set('cita-rapida',d.cita);
-    set('c-fricciones',d.fricciones);set('c-valor',d.valor);set('c-oportunidades',d.oportunidades);
-    if(d.perfiles)d.perfiles.forEach(v=>{perfilesSeleccionados.add(v);const el=document.querySelector(`[data-v="${v}"]`);if(el)el.classList.add('sel');});
-    if(d.hipotesis){
-      Object.entries(d.hipotesis).forEach(([id,est])=>{
-        hipStates[id]=est;
-        const row=document.getElementById('hi-'+id);if(!row)return;
-        row.classList.add('h-'+est);
-        const idx={ok:0,mod:1,no:2}[est];
-        const btns=row.querySelectorAll('.h-btn');
-        if(btns[idx])btns[idx].classList.add('h-'+est);
-      });
-    }
+    const setVal=(id,v)=>{const el=document.getElementById(id);if(el&&v!==undefined&&v!==null)el.value=v;};
+    setVal('f-codigo',d.codigo);setVal('f-fecha',d.fecha);setVal('f-quien',d.quien);
+    setVal('f-momento',d.momento);setVal('f-grupo',d.grupo);setVal('f-procedencia',d.procedencia);
+    setVal('f-contexto',d.contexto);setVal('notas-libres',d.notas);setVal('cita-rapida',d.cita);
+    setVal('c-fricciones',d.fricciones);setVal('c-valor',d.valor);setVal('c-oportunidades',d.oportunidades);
+    if(d.perfiles) d.perfiles.forEach(v=>{
+      perfilesSeleccionados.add(v);
+      const el=document.querySelector('[data-v="'+v+'"]');
+      if(el) el.classList.add('sel');
+    });
+    if(d.hipotesis) Object.entries(d.hipotesis).forEach(([id,est])=>{
+      hipStates[id]=est;
+      const row=document.getElementById('hi-'+id);
+      if(!row) return;
+      row.classList.add('h-'+est);
+      const idx={ok:0,mod:1,no:2}[est];
+      const btns=row.querySelectorAll('.h-btn');
+      if(btns[idx]) btns[idx].classList.add('h-'+est);
+    });
     if(d.prioridad){
       prioridad=d.prioridad;
       document.querySelectorAll('.prio-btn').forEach(b=>b.classList.remove('sel-baja','sel-media','sel-alta'));
-      const map={baja:'pb-baja',media:'pb-media',alta:'pb-alta'};
-      const btn=document.getElementById(map[d.prioridad]);
-      if(btn)btn.classList.add('sel-'+d.prioridad);
+      const mapa={baja:'pb-baja',media:'pb-media',alta:'pb-alta'};
+      const btn=document.getElementById(mapa[d.prioridad]);
+      if(btn) btn.classList.add('sel-'+d.prioridad);
     }
-    if(d.transcripcion)transcripcion=d.transcripcion;
+    if(d.transcripcion) transcripcion=d.transcripcion;
     if(d.ts){
       const ts=new Date(d.ts).toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
-      document.getElementById('bottomInfo').innerHTML=`Guardado <strong>${ts}</strong>`;
+      document.getElementById('bottomInfo').innerHTML='Guardado <strong>'+ts+'</strong>';
     }
   }catch(e){}
 }
 
 function nuevaEntrevista(){
-  if(!confirm('¿Iniciar una nueva entrevista? Se perderá la actual si no la has enviado.'))return;
-  localStorage.removeItem(SK);location.reload();
+  if(!confirm('Iniciar una nueva entrevista? Se perdera la actual si no la has enviado.')) return;
+  localStorage.removeItem(SK);
+  location.reload();
 }
 
 function toast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg;t.classList.add('show');
-  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2200);
+  clearTimeout(t._t);
+  t._t=setTimeout(()=>t.classList.remove('show'),2200);
 }
 
-document.addEventListener('input',e=>{if(e.target.matches('input,textarea,select'))autoguardar();});
+document.addEventListener('input',e=>{
+  if(e.target.matches('input,textarea,select')) autoguardar();
+});
 
 let _sx=0;
 document.addEventListener('touchstart',e=>{_sx=e.touches[0].clientX;},{passive:true});
 document.addEventListener('touchend',e=>{
-  const d=_sx-e.changedTouches[0].clientX;
-  if(Math.abs(d)>60)ir(Math.max(0,Math.min(2,pantallaActual+(d>0?1:-1))));
+  const diff=_sx-e.changedTouches[0].clientX;
+  if(Math.abs(diff)>60) ir(Math.max(0,Math.min(2,pantallaActual+(diff>0?1:-1))));
 },{passive:true});
 
 document.addEventListener('DOMContentLoaded',()=>{
   cargar();
   const fd=document.getElementById('f-fecha');
-  if(fd&&!fd.value)fd.value=new Date().toISOString().split('T')[0];
+  if(fd&&!fd.value) fd.value=new Date().toISOString().split('T')[0];
 });
 </script>
 </body>
