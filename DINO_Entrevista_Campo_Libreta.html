@@ -422,17 +422,77 @@ async function toggleRec(){
 async function iniciarRec(){
   try{
     const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-    mediaRec=new MediaRecorder(stream);
+
+    // Detectar el formato que soporta este dispositivo
+    const formatos = [
+      'audio/mp4',        // iOS Safari / Chrome iOS
+      'audio/aac',        // iOS alternativo
+      'audio/webm;codecs=opus', // Chrome desktop/Android
+      'audio/webm',       // Firefox/Chrome
+      'audio/ogg',        // Firefox
+    ];
+    const mimeType = formatos.find(f => MediaRecorder.isTypeSupported(f)) || '';
+    const ext = mimeType.includes('mp4') || mimeType.includes('aac') ? 'm4a'
+              : mimeType.includes('ogg') ? 'ogg' : 'webm';
+
+    const opciones = mimeType ? { mimeType } : {};
+    mediaRec = new MediaRecorder(stream, opciones);
     audioChunks=[];
-    mediaRec.ondataavailable=e=>audioChunks.push(e.data);
+    mediaRec.ondataavailable=e=>{ if(e.data.size>0) audioChunks.push(e.data); };
     mediaRec.onstop=()=>{
-      const blob=new Blob(audioChunks,{type:'audio/webm'});
+      const tipo = mimeType || 'audio/webm';
+      const blob=new Blob(audioChunks,{type:tipo});
       const url=URL.createObjectURL(blob);
-      const a=document.createElement('a');
-      a.href=url;a.download=`dino-audio-${val('f-codigo')||Date.now()}.webm`;a.click();
-      toast('Audio descargado');
+
+      // Reproducir en pantalla para verificar antes de descargar
+      const audio = document.createElement('audio');
+      audio.controls = true;
+      audio.src = url;
+      audio.style.cssText = 'width:100%;margin:.5rem 0;border-radius:8px';
+
+      // Mostrar reproductor y botón de descarga en un panel
+      let panel = document.getElementById('audio-panel');
+      if(!panel){
+        panel = document.createElement('div');
+        panel.id = 'audio-panel';
+        panel.style.cssText = 'background:var(--paper2);border:1px solid var(--rule);border-radius:8px;padding:.8rem 1rem;margin:.8rem 0';
+        const lbl = document.createElement('div');
+        lbl.style.cssText = 'font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem';
+        lbl.textContent = 'Grabación · escucha antes de descargar';
+        panel.appendChild(lbl);
+        // Insertar después del botón de grabar, en la pantalla activa
+        const hdr = document.querySelector('.hdr-right');
+        document.querySelector('.inner').prepend(panel);
+      }
+      panel.appendChild(audio);
+
+      // Botón de descarga
+      const btnDesc = document.createElement('button');
+      btnDesc.className = 'btn btn-ghost';
+      btnDesc.style.cssText = 'width:100%;margin-top:.5rem;font-size:.82rem';
+      btnDesc.textContent = `Descargar audio (.${ext})`;
+      btnDesc.onclick = () => {
+        const a=document.createElement('a');
+        a.href=url;
+        a.download=`dino-audio-${val('f-codigo')||Date.now()}.${ext}`;
+        a.click();
+      };
+      panel.appendChild(btnDesc);
+
+      toast('Grabación lista · escúchala antes de descargar');
     };
-    mediaRec.start();grabando=true;segs=0;
+    mediaRec.start(1000); // chunk cada segundo para mayor fiabilidad en iOS
+    grabando=true;segs=0;
+    timerInt=setInterval(()=>{
+      segs++;
+      const m=Math.floor(segs/60),s=(segs%60).toString().padStart(2,'0');
+      document.getElementById('recTime').textContent=m+':'+s;
+    },1000);
+    document.getElementById('recPill').classList.add('on');
+    document.getElementById('recTxt').textContent='Grabando';
+    iniciarTranscripcion();
+  }catch(e){toast('Sin acceso al micrófono');}
+}
     timerInt=setInterval(()=>{
       segs++;
       const m=Math.floor(segs/60),s=(segs%60).toString().padStart(2,'0');
