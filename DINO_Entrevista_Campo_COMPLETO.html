@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0f0e0c">
+<title>Dinópolis · Entrevista en campo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ─────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+/* ─── VARIABLES ──────────────────────── */
+:root{
+  --bg:      #0f0e0c;
+  --bg2:     #1a1916;
+  --bg3:     #252320;
+  --gold:    #c9a84c;
+  --gold2:   #e8d49a;
+  --cream:   #f5f0e8;
+  --muted:   #7a7060;
+  --border:  #2e2b24;
+  --border2: #3d3930;
+  --ok:      #2a8a5e;
+  --ok-bg:   rgba(42,138,94,.12);
+  --warn:    #c04a20;
+  --warn-bg: rgba(192,74,32,.10);
+  --blue:    #4a8fc4;
+  --blue-bg: rgba(74,143,196,.10);
+  --red:     #c0304a;
+  --fd:      'DM Serif Display', Georgia, serif;
+  --fb:      'Outfit', system-ui, sans-serif;
+  --r:       12px;
+}
+
+/* ─── BASE ───────────────────────────── */
+body{
+  font-family:var(--fb);
+  background:var(--bg);
+  color:var(--cream);
+  font-size:16px;
+  font-weight:400;
+  line-height:1.6;
+  min-height:100vh;
+  overscroll-behavior:none;
+}
+
+/* ─── HEADER ─────────────────────────── */
+.hdr{
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  padding:.9rem 1.2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:200;
+  gap:.8rem;
+}
+.hdr-left{display:flex;align-items:center;gap:.8rem}
+.hdr-logo{
+  font-family:var(--fd);
+  font-size:1.1rem;
+  color:var(--gold);
+  white-space:nowrap;
+}
+.hdr-sub{
+  font-size:.72rem;
+  color:var(--muted);
+  letter-spacing:.04em;
+  display:none;
+}
+@media(min-width:480px){.hdr-sub{display:block}}
+.hdr-right{display:flex;align-items:center;gap:.5rem}
+
+/* ─── BOTONES BASE ───────────────────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+  font-family:var(--fb);font-size:.82rem;font-weight:500;
+  padding:.5rem 1rem;border-radius:8px;border:none;
+  cursor:pointer;transition:all .18s;white-space:nowrap;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border2)}
+.btn-ghost:hover,.btn-ghost:active{border-color:var(--gold);color:var(--gold)}
+.btn-gold{background:var(--gold);color:var(--bg);font-weight:600}
+.btn-gold:hover,.btn-gold:active{background:var(--gold2)}
+.btn-ok{background:var(--ok-bg);color:var(--ok);border:1px solid rgba(42,138,94,.3)}
+.btn-warn{background:var(--warn-bg);color:var(--warn);border:1px solid rgba(192,74,32,.3)}
+.btn-blue{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(74,143,196,.3)}
+.btn-danger{background:rgba(192,48,74,.12);color:var(--red);border:1px solid rgba(192,48,74,.25)}
+.btn-lg{padding:.75rem 1.4rem;font-size:.95rem;border-radius:10px}
+.btn-sm{padding:.35rem .75rem;font-size:.75rem}
+.btn-icon{padding:.5rem;border-radius:8px;aspect-ratio:1}
+
+/* ─── PROGRESO ───────────────────────── */
+.progress-strip{
+  height:3px;background:var(--border);
+  position:sticky;top:61px;z-index:199;
+}
+.progress-fill{
+  height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));
+  transition:width .4s ease;
+}
+
+/* ─── LAYOUT ─────────────────────────── */
+.app{display:flex;flex-direction:column;min-height:100vh}
+.main{flex:1;padding:1.2rem 1rem 6rem;max-width:720px;margin:0 auto;width:100%}
+
+/* ─── PANTALLAS ──────────────────────── */
+.screen{display:none;animation:fadeUp .22s ease}
+.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+/* ─── TIPOGRAFÍA ─────────────────────── */
+.kicker{
+  font-size:.68rem;font-weight:600;letter-spacing:.14em;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:.4rem;display:block;
+}
+.screen-title{
+  font-family:var(--fd);font-size:clamp(1.5rem,5vw,2rem);
+  font-weight:400;line-height:1.15;letter-spacing:-.01em;
+  margin-bottom:.5rem;
+}
+.screen-intro{
+  font-size:.92rem;color:var(--muted);line-height:1.7;
+  border-left:3px solid var(--gold);padding-left:.9rem;
+  margin-bottom:1.6rem;font-style:italic;
+}
+.section-label{
+  font-size:.65rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold);
+  margin:1.8rem 0 .7rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ─── CARDS ──────────────────────────── */
+.card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.1rem 1.2rem;
+  margin-bottom:.7rem;transition:border-color .18s;
+}
+.card:hover{border-color:var(--border2)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.6rem;margin-bottom:.8rem}
+.card-mini{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:10px;padding:.9rem 1rem;
+  cursor:pointer;transition:all .18s;text-align:center;
+  -webkit-tap-highlight-color:transparent;
+}
+.card-mini:hover,.card-mini.sel{border-color:var(--gold);background:rgba(201,168,76,.08)}
+.card-mini.sel{border-color:var(--gold)}
+.card-mini .cm-icon{font-size:1.4rem;margin-bottom:.4rem;display:block}
+.card-mini .cm-label{font-size:.8rem;font-weight:500;color:var(--cream)}
+.card-mini .cm-sub{font-size:.7rem;color:var(--muted);margin-top:.15rem}
+
+/* ─── CAMPOS ─────────────────────────── */
+.campo{margin-bottom:1rem}
+.campo label{
+  display:block;font-size:.68rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.4rem;
+}
+.campo input,.campo textarea,.campo select{
+  width:100%;background:var(--bg3);
+  border:1.5px solid var(--border2);border-radius:9px;
+  padding:.75rem 1rem;font-size:1rem;font-family:var(--fb);
+  color:var(--cream);outline:none;resize:vertical;
+  transition:border-color .18s,box-shadow .18s;
+  -webkit-appearance:none;appearance:none;
+  line-height:1.5;
+}
+.campo input:focus,.campo textarea:focus,.campo select:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(201,168,76,.12);
+}
+.campo input::placeholder,.campo textarea::placeholder{color:var(--border2)}
+.campo textarea{min-height:110px}
+.campo select option{background:var(--bg2)}
+.campo-grid{display:grid;gap:.8rem}
+@media(min-width:480px){.campo-grid-2{grid-template-columns:1fr 1fr}}
+
+/* ─── PREGUNTA ───────────────────────── */
+.pregunta{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.2rem;margin-bottom:.8rem;
+  position:relative;overflow:hidden;
+}
+.pregunta::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:3px;background:var(--border2);
+  transition:background .18s;
+}
+.pregunta.done::before{background:var(--ok)}
+.pregunta.active-q::before{background:var(--gold)}
+.preg-head{display:flex;align-items:flex-start;gap:.9rem;margin-bottom:.7rem}
+.preg-num{
+  flex-shrink:0;width:26px;height:26px;border-radius:50%;
+  background:var(--bg3);border:1.5px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:600;color:var(--muted);
+  margin-top:.1rem;transition:all .18s;
+}
+.pregunta.done .preg-num{background:var(--ok);border-color:var(--ok);color:#fff}
+.preg-texto{font-size:.97rem;font-weight:500;color:var(--cream);line-height:1.5;flex:1}
+.preg-sub{font-size:.78rem;color:var(--muted);margin-bottom:.7rem;font-style:italic;padding-left:2.2rem}
+.preg-notas textarea{
+  width:100%;background:var(--bg3);border:1.5px solid var(--border);
+  border-radius:8px;padding:.65rem .9rem;font-size:.88rem;
+  font-family:var(--fb);color:var(--cream);outline:none;
+  resize:vertical;min-height:80px;line-height:1.55;
+  transition:border-color .18s;
+}
+.preg-notas textarea:focus{border-color:var(--gold)}
+.preg-notas textarea::placeholder{color:var(--border2)}
+.preg-actions{display:flex;align-items:center;gap:.5rem;margin-top:.7rem;flex-wrap:wrap}
+.tag-list{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
+.tag{
+  font-size:.7rem;font-weight:500;padding:.22rem .6rem;
+  border-radius:20px;border:1px solid var(--border2);
+  color:var(--muted);cursor:pointer;transition:all .15s;
+  background:var(--bg3);-webkit-tap-highlight-color:transparent;
+}
+.tag.sel{background:rgba(201,168,76,.12);color:var(--gold);border-color:rgba(201,168,76,.4)}
+.tag.neg{background:rgba(192,74,32,.1);color:var(--warn);border-color:rgba(192,74,32,.3)}
+.tag.pos{background:rgba(42,138,94,.1);color:var(--ok);border-color:rgba(42,138,94,.3)}
+
+/* ─── MÓDULOS ────────────────────────── */
+.modulo-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:10px;padding:.9rem 1.1rem;
+  cursor:pointer;width:100%;margin-bottom:.5rem;
+  transition:all .18s;-webkit-tap-highlight-color:transparent;
+}
+.modulo-btn:hover{border-color:var(--border2)}
+.modulo-btn.activo{border-color:var(--gold);background:rgba(201,168,76,.06)}
+.mod-info{text-align:left}
+.mod-titulo{font-size:.92rem;font-weight:500}
+.mod-desc{font-size:.75rem;color:var(--muted);margin-top:.15rem}
+.mod-badge{
+  font-size:.65rem;font-weight:600;padding:.2rem .55rem;
+  border-radius:20px;background:rgba(201,168,76,.15);
+  color:var(--gold);white-space:nowrap;flex-shrink:0;
+}
+.mod-badge.activo{background:var(--gold);color:var(--bg)}
+
+/* ─── GRABACIÓN ──────────────────────── */
+.rec-panel{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.1rem 1.2rem;
+  margin-bottom:1.2rem;position:sticky;top:68px;z-index:150;
+}
+.rec-top{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.rec-status{display:flex;align-items:center;gap:.5rem;flex:1}
+.rec-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--muted);flex-shrink:0;
+  transition:background .3s;
+}
+.rec-dot.grabando{background:var(--red);animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+.rec-label{font-size:.8rem;color:var(--muted);font-weight:500}
+.rec-time{
+  font-size:1.1rem;font-family:monospace;color:var(--cream);
+  letter-spacing:.05em;min-width:50px;
+}
+.rec-transcript{
+  margin-top:.8rem;display:none;
+  background:var(--bg3);border-radius:8px;padding:.75rem;
+  font-size:.82rem;color:var(--cream);line-height:1.6;
+  max-height:120px;overflow-y:auto;
+  border:1px solid var(--border);
+}
+.rec-transcript.visible{display:block}
+.transcript-label{font-size:.62rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem;font-weight:600}
+#transcriptText{opacity:.85}
+
+/* ─── HIPÓTESIS TRACKER ──────────────── */
+.hipot-grid{display:grid;gap:.5rem}
+.hipot-row{
+  display:grid;grid-template-columns:36px 1fr auto;
+  align-items:center;gap:.7rem;
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:9px;padding:.65rem .9rem;
+  transition:border-color .18s;
+}
+.h-cod{
+  font-size:.68rem;font-weight:700;color:var(--gold);
+  text-align:center;letter-spacing:.02em;
+}
+.h-txt{font-size:.82rem;color:var(--muted);line-height:1.4}
+.h-btns{display:flex;gap:.3rem}
+.h-btn{
+  font-size:.62rem;font-weight:600;padding:.2rem .45rem;
+  border-radius:6px;border:1px solid var(--border2);
+  background:var(--bg2);color:var(--muted);cursor:pointer;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+}
+.h-btn.v{background:var(--ok-bg);color:var(--ok);border-color:rgba(42,138,94,.4)}
+.h-btn.a{background:rgba(201,168,76,.1);color:var(--gold);border-color:rgba(201,168,76,.35)}
+.h-btn.n{background:var(--warn-bg);color:var(--warn);border-color:rgba(192,74,32,.4)}
+.hipot-row.h-ok{border-color:rgba(42,138,94,.35)}
+.hipot-row.h-mod{border-color:rgba(201,168,76,.35)}
+.hipot-row.h-no{border-color:rgba(192,74,32,.25);opacity:.7}
+
+/* ─── RESUMEN ────────────────────────── */
+.resumen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.6rem;margin-bottom:1.2rem}
+.res-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:10px;padding:.9rem;text-align:center;
+}
+.res-num{font-size:1.8rem;font-family:var(--fd);color:var(--gold);line-height:1}
+.res-lbl{font-size:.7rem;color:var(--muted);margin-top:.3rem;text-transform:uppercase;letter-spacing:.06em}
+
+/* ─── EXPORT ─────────────────────────── */
+.export-actions{display:flex;flex-direction:column;gap:.6rem}
+
+/* ─── BARRA INFERIOR ─────────────────── */
+.bottom-bar{
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--bg2);border-top:1px solid var(--border);
+  display:flex;align-items:center;
+  padding:.6rem 1rem;gap:.5rem;z-index:200;
+}
+.bb-prev,.bb-next{
+  background:var(--bg3);border:1px solid var(--border2);
+  border-radius:9px;color:var(--cream);
+  font-family:var(--fb);font-size:.85rem;font-weight:500;
+  padding:.55rem 1rem;cursor:pointer;transition:all .18s;
+  -webkit-tap-highlight-color:transparent;
+  flex-shrink:0;
+}
+.bb-prev:hover,.bb-next:hover{border-color:var(--gold);color:var(--gold)}
+.bb-prev:disabled,.bb-next:disabled{opacity:.25;cursor:default}
+.bb-center{flex:1;display:flex;flex-direction:column;align-items:center;gap:.2rem}
+.bb-dots{display:flex;gap:.3rem}
+.bb-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--border2);cursor:pointer;transition:all .2s;
+}
+.bb-dot.active{background:var(--gold);width:18px;border-radius:3px}
+.bb-pag{font-size:.62rem;color:var(--muted);letter-spacing:.06em}
+
+/* ─── NOTIFICACIÓN ───────────────────── */
+.toast{
+  position:fixed;top:1rem;left:50%;transform:translateX(-50%) translateY(-80px);
+  background:var(--bg2);border:1px solid var(--border2);border-radius:10px;
+  padding:.55rem 1.1rem;font-size:.82rem;font-weight:500;
+  color:var(--cream);z-index:999;transition:transform .3s ease;
+  white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.4);
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ─── DIVISOR ────────────────────────── */
+.div-sep{border:none;border-top:1px solid var(--border);margin:1.4rem 0}
+
+/* ─── PRINT ──────────────────────────── */
+@media print{
+  .hdr,.progress-strip,.bottom-bar,.rec-panel,.btn{display:none!important}
+  .screen{display:block!important}
+  body{background:#fff;color:#000;font-size:11pt}
+  .card,.pregunta,.hipot-row{background:#fff;border-color:#ccc}
+  .campo textarea,.preg-notas textarea{border-color:#ccc;background:#fafafa}
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ──────────────────────────── -->
+<header class="hdr">
+  <div class="hdr-left">
+    <div class="hdr-logo">Dinópolis 25º</div>
+    <div class="hdr-sub">Entrevista en campo · Fase 2A</div>
+  </div>
+  <div class="hdr-right">
+    <button class="btn btn-ghost btn-sm" onclick="guardarManual()">Guardar</button>
+    <button class="btn btn-ghost btn-icon btn-sm" onclick="irA('s-export')" title="Exportar">⬆</button>
+  </div>
+</header>
+
+<!-- ── PROGRESO ─────────────────────────── -->
+<div class="progress-strip"><div class="progress-fill" id="progFill" style="width:12.5%"></div></div>
+
+<!-- ── APP ─────────────────────────────── -->
+<div class="app">
+<main class="main">
+
+<!-- ════════════════════════════════════
+     S0 · REGISTRO PREVIO
+════════════════════════════════════ -->
+<section class="screen active" id="s-registro">
+  <span class="kicker">01 · Inicio de entrevista</span>
+  <h1 class="screen-title">Registro previo</h1>
+  <p class="screen-intro">Antes de empezar, completa los datos básicos. Cuanto más preciso, más útil para el análisis posterior.</p>
+
+  <div class="campo-grid campo-grid-2">
+    <div class="campo">
+      <label>Código de entrevista</label>
+      <input type="text" id="r-codigo" placeholder="ej. DINO-2A-V-001">
+    </div>
+    <div class="campo">
+      <label>Fecha</label>
+      <input type="date" id="r-fecha">
+    </div>
+  </div>
+
+  <div class="campo-grid campo-grid-2">
+    <div class="campo">
+      <label>Entrevistador/a</label>
+      <input type="text" id="r-entrevistador" placeholder="Nombre">
+    </div>
+    <div class="campo">
+      <label>Lugar</label>
+      <input type="text" id="r-lugar" placeholder="ej. Zona de salida, sala del museo...">
+    </div>
+  </div>
+
+  <div class="section-label">Perfil del visitante</div>
+
+  <div class="campo">
+    <label>Tipo de visitante · Selecciona uno o varios</label>
+    <div class="card-grid" id="tipo-grid">
+      <div class="card-mini" data-val="familia-pequenos" onclick="toggleTipo(this)">
+        <div class="cm-label">Familia niños pequeños</div>
+        <div class="cm-sub">Hasta 6 años</div>
+      </div>
+      <div class="card-mini" data-val="familia-mixta" onclick="toggleTipo(this)">
+        <div class="cm-label">Familia edades mixtas</div>
+        <div class="cm-sub">Distintas edades</div>
+      </div>
+      <div class="card-mini" data-val="repetidor" onclick="toggleTipo(this)">
+        <div class="cm-label">Repetidor / proximidad</div>
+        <div class="cm-sub">Ha venido antes</div>
+      </div>
+      <div class="card-mini" data-val="turista" onclick="toggleTipo(this)">
+        <div class="cm-label">Turista / fuera Aragón</div>
+        <div class="cm-sub">Visita de viaje</div>
+      </div>
+      <div class="card-mini" data-val="cultural" onclick="toggleTipo(this)">
+        <div class="cm-label">Interés científico</div>
+        <div class="cm-sub">Motivación cultural</div>
+      </div>
+      <div class="card-mini" data-val="ocio" onclick="toggleTipo(this)">
+        <div class="cm-label">Ocio familiar</div>
+        <div class="cm-sub">Sin interés previo</div>
+      </div>
+      <div class="card-mini" data-val="escolar" onclick="toggleTipo(this)">
+        <div class="cm-label">Grupo escolar</div>
+        <div class="cm-sub">Colectivo organizado</div>
+      </div>
+      <div class="card-mini" data-val="accesibilidad" onclick="toggleTipo(this)">
+        <div class="cm-label">Necesidades especiales</div>
+        <div class="cm-sub">Movilidad / accesib.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="campo-grid campo-grid-2">
+    <div class="campo">
+      <label>Momento de entrevista</label>
+      <select id="r-momento">
+        <option value="">Seleccionar...</option>
+        <option value="durante">Durante la visita</option>
+        <option value="final">Final de visita</option>
+        <option value="posterior">Posterior (tel. / video)</option>
+      </select>
+    </div>
+    <div class="campo">
+      <label>Primera visita o repetidor</label>
+      <select id="r-primera">
+        <option value="">Seleccionar...</option>
+        <option value="primera">Primera vez</option>
+        <option value="segunda">Segunda vez</option>
+        <option value="repetidor">Tres o más veces</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="campo-grid campo-grid-2">
+    <div class="campo">
+      <label>Composición del grupo</label>
+      <input type="text" id="r-grupo" placeholder="ej. 2 adultos, 3 niños (4, 7, 11 años)">
+    </div>
+    <div class="campo">
+      <label>Procedencia</label>
+      <input type="text" id="r-procedencia" placeholder="ej. Zaragoza, Madrid, Francia...">
+    </div>
+  </div>
+
+  <div class="campo">
+    <label>Observaciones previas</label>
+    <textarea id="r-observaciones" placeholder="Notas de contexto antes de empezar: estado emocional, condiciones, si has observado algo antes de la entrevista..."></textarea>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+     S1 · GRABACIÓN Y MÓDULOS
+════════════════════════════════════ -->
+<section class="screen" id="s-modulos">
+  <span class="kicker">02 · Configuración</span>
+  <h1 class="screen-title">Grabación y módulos</h1>
+  <p class="screen-intro">Activa la grabación antes de empezar. Selecciona los módulos de preguntas que vas a usar según el perfil.</p>
+
+  <!-- PANEL DE GRABACIÓN -->
+  <div class="section-label">Grabación de la sesión</div>
+  <div class="card">
+    <div class="rec-top">
+      <div class="rec-status">
+        <div class="rec-dot" id="recDot"></div>
+        <span class="rec-label" id="recLabel">Sin grabar</span>
+        <span class="rec-time" id="recTime">0:00</span>
+      </div>
+      <button class="btn btn-warn btn-sm" id="btnGrabar" onclick="toggleGrabacion()">Iniciar grabación</button>
+      <button class="btn btn-ghost btn-sm" id="btnTranscr" onclick="toggleTranscripcion()" style="display:none">Ver transcripción</button>
+    </div>
+    <div class="rec-transcript" id="recTranscript">
+      <div class="transcript-label">Transcripción automática</div>
+      <div id="transcriptText">Esperando audio...</div>
+    </div>
+    <div style="margin-top:.7rem;font-size:.74rem;color:var(--muted)">
+      La grabación queda guardada en este dispositivo. La transcripción usa el reconocimiento de voz del navegador. Para mejor resultado, usa Chrome o Safari en silencio.
+    </div>
+  </div>
+
+  <!-- MÓDULOS -->
+  <div class="section-label">Módulos de preguntas</div>
+  <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem">El guion base (apertura, experiencia, cierre) está siempre activo. Añade módulos según el perfil de la persona entrevistada.</p>
+
+  <div id="modulos-lista">
+    <button class="modulo-btn" data-mod="base" onclick="toggleModulo(this)" disabled style="opacity:.6;cursor:default">
+      <div class="mod-info">
+        <div class="mod-titulo">Guion base</div>
+        <div class="mod-desc">Apertura · Organización · Orientación · Experiencia · Valor global · Cierre</div>
+      </div>
+      <span class="mod-badge activo">Siempre activo</span>
+    </button>
+    <button class="modulo-btn" data-mod="familia-pequenos" onclick="toggleModulo(this)">
+      <div class="mod-info">
+        <div class="mod-titulo">B1 · Familias con niños pequeños</div>
+        <div class="mod-desc">Ritmos, cuidado, descanso, claridad y autonomía familiar</div>
+      </div>
+      <span class="mod-badge">+ Añadir</span>
+    </button>
+    <button class="modulo-btn" data-mod="familia-mixta" onclick="toggleModulo(this)">
+      <div class="mod-info">
+        <div class="mod-titulo">B2 · Familias con edades mixtas</div>
+        <div class="mod-desc">Gestión de intereses y ritmos distintos en el grupo</div>
+      </div>
+      <span class="mod-badge">+ Añadir</span>
+    </button>
+    <button class="modulo-btn" data-mod="repetidor" onclick="toggleModulo(this)">
+      <div class="mod-info">
+        <div class="mod-titulo">B3 · Repetidores y proximidad</div>
+        <div class="mod-desc">Motivaciones de regreso, percepción de evolución, fidelización</div>
+      </div>
+      <span class="mod-badge">+ Añadir</span>
+    </button>
+    <button class="modulo-btn" data-mod="turista" onclick="toggleModulo(this)">
+      <div class="mod-info">
+        <div class="mod-titulo">B4 · Turistas / fuera de Aragón</div>
+        <div class="mod-desc">Dinópolis dentro de una experiencia turística más amplia</div>
+      </div>
+      <span class="mod-badge">+ Añadir</span>
+    </button>
+    <button class="modulo-btn" data-mod="cultural" onclick="toggleModulo(this)">
+      <div class="mod-info">
+        <div class="mod-titulo">B5 · Interés científico o cultural</div>
+        <div class="mod-desc">Profundidad, rigor, claridad y valor cultural del servicio</div>
+      </div>
+      <span class="mod-badge">+ Añadir</span>
+    </button>
+    <button class="modulo-btn" data-mod="ocio" onclick="toggleModulo(this)">
+      <div class="mod-info">
+        <div class="mod-titulo">B6 · Ocio familiar sin interés previo</div>
+        <div class="mod-desc">Experiencia desde motivación lúdica, sin expectativa científica</div>
+      </div>
+      <span class="mod-badge">+ Añadir</span>
+    </button>
+    <button class="modulo-btn" data-mod="escolar" onclick="toggleModulo(this)">
+      <div class="mod-info">
+        <div class="mod-titulo">B7 · Grupos escolares</div>
+        <div class="mod-desc">Organización, aprendizaje, gestión de grupo y acompañamiento</div>
+      </div>
+      <span class="mod-badge">+ Añadir</span>
+    </button>
+    <button class="modulo-btn" data-mod="accesibilidad" onclick="toggleModulo(this)">
+      <div class="mod-info">
+        <div class="mod-titulo">B8 · Accesibilidad y movilidad</div>
+        <div class="mod-desc">Barreras físicas, cognitivas, informativas y de confort</div>
+      </div>
+      <span class="mod-badge">+ Añadir</span>
+    </button>
+    <button class="modulo-btn" data-mod="restauracion" onclick="toggleModulo(this)">
+      <div class="mod-info">
+        <div class="mod-titulo">B9 · Restauración</div>
+        <div class="mod-desc">Restauración como momento clave del journey</div>
+      </div>
+      <span class="mod-badge">+ Añadir</span>
+    </button>
+    <button class="modulo-btn" data-mod="tienda" onclick="toggleModulo(this)">
+      <div class="mod-info">
+        <div class="mod-titulo">B10 · Tienda</div>
+        <div class="mod-desc">Tienda como cierre, recuerdo y continuidad de marca</div>
+      </div>
+      <span class="mod-badge">+ Añadir</span>
+    </button>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+     S2 · ENTREVISTA · GUION BASE
+════════════════════════════════════ -->
+<section class="screen" id="s-guion">
+  <span class="kicker">03 · Entrevista</span>
+  <h1 class="screen-title">Guion de entrevista</h1>
+
+  <!-- GRABACIÓN STICKY -->
+  <div class="rec-panel" id="recPanelMini">
+    <div class="rec-top">
+      <div class="rec-status">
+        <div class="rec-dot" id="recDot2"></div>
+        <span class="rec-label" id="recLabel2" style="font-size:.75rem">Sin grabar</span>
+        <span class="rec-time" id="recTime2" style="font-size:.9rem">0:00</span>
+      </div>
+      <button class="btn btn-sm" id="btnGrabar2" onclick="toggleGrabacion()" style="background:var(--warn-bg);color:var(--warn);border:1px solid rgba(192,74,32,.3);font-size:.75rem;padding:.3rem .7rem">Iniciar</button>
+      <button class="btn btn-ghost btn-sm" onclick="toggleTranscripcion()" style="font-size:.75rem;padding:.3rem .7rem">Transcripción</button>
+    </div>
+    <div class="rec-transcript" id="recTranscript2">
+      <div class="transcript-label">Transcripción automática</div>
+      <div id="transcriptText2" style="font-size:.8rem;opacity:.85">Esperando audio...</div>
+    </div>
+  </div>
+
+  <div id="preguntas-container"></div>
+</section>
+
+
+<!-- ════════════════════════════════════
+     S3 · HIPÓTESIS TRACKER
+════════════════════════════════════ -->
+<section class="screen" id="s-hipotesis">
+  <span class="kicker">04 · Análisis</span>
+  <h1 class="screen-title">Tracker de hipótesis</h1>
+  <p class="screen-intro">Marca el estado de cada hipótesis según lo que está emergiendo en la conversación. Puedes añadir notas literales.</p>
+
+  <div class="hipot-grid" id="hipot-grid">
+    <!-- se genera con JS -->
+  </div>
+
+  <div class="section-label" style="margin-top:1.6rem">Notas de campo</div>
+  <div class="campo">
+    <label>Observaciones del entrevistador/a durante la sesión</label>
+    <textarea id="notas-campo" placeholder="Lenguaje corporal, contradicciones, momentos de énfasis, silencios significativos, cosas observadas que no dijo pero que son relevantes..."></textarea>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+     S4 · SÍNTESIS
+════════════════════════════════════ -->
+<section class="screen" id="s-sintesis">
+  <span class="kicker">05 · Síntesis posterior</span>
+  <h1 class="screen-title">Ficha de síntesis</h1>
+  <p class="screen-intro">Completa inmediatamente después de la entrevista, antes de que se enfríe. Es el documento más valioso para el análisis colectivo.</p>
+
+  <div class="campo">
+    <label>1 · Ideas principales</label>
+    <textarea id="s-ideas" placeholder="Las 3-5 cosas más importantes que han emergido en esta entrevista..."></textarea>
+  </div>
+  <div class="campo">
+    <label>2 · Expectativas previas detectadas</label>
+    <textarea id="s-expectativas" placeholder="Qué traía esta persona antes de llegar, qué esperaba encontrar..."></textarea>
+  </div>
+  <div class="campo">
+    <label>3 · Momentos de valor</label>
+    <textarea id="s-valor" placeholder="Qué generó emoción, aprendizaje, sorpresa positiva, recuerdo..."></textarea>
+  </div>
+  <div class="campo">
+    <label>4 · Fricciones o dudas detectadas</label>
+    <textarea id="s-fricciones" placeholder="Dónde aparecieron obstáculos, confusión, pérdida de claridad, decepción..."></textarea>
+  </div>
+  <div class="campo">
+    <label>5 · Puntos de contacto mencionados</label>
+    <textarea id="s-touchpoints" placeholder="Señalética, personal, mapa, web, taquilla, restauración, tienda..."></textarea>
+  </div>
+  <div class="campo">
+    <label>6 · Necesidades no cubiertas</label>
+    <textarea id="s-necesidades" placeholder="Qué echaron en falta, qué habría hecho la experiencia mejor..."></textarea>
+  </div>
+  <div class="campo">
+    <label>7 · Citas literales relevantes</label>
+    <textarea id="s-citas" placeholder="Frases textuales que merezca la pena conservar exactamente como se dijeron..."></textarea>
+  </div>
+  <div class="campo">
+    <label>8 · Oportunidades de diseño</label>
+    <textarea id="s-oportunidades" placeholder="Ideas, pistas o direcciones que emergen para el rediseño del servicio..."></textarea>
+  </div>
+
+  <div class="section-label">Prioridad aparente de esta entrevista</div>
+  <div style="display:flex;gap:.6rem;margin-bottom:1.2rem">
+    <button class="btn btn-sm" onclick="setPrioridad('baja',this)" id="pr-baja">Baja</button>
+    <button class="btn btn-sm" onclick="setPrioridad('media',this)" id="pr-media">Media</button>
+    <button class="btn btn-sm btn-gold" onclick="setPrioridad('alta',this)" id="pr-alta">Alta</button>
+  </div>
+
+  <div class="campo">
+    <label>11 · Observaciones finales del entrevistador/a</label>
+    <textarea id="s-observaciones" placeholder="Algo importante que no encaje en los apartados anteriores..."></textarea>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+     S5 · EXPORTAR
+════════════════════════════════════ -->
+<section class="screen" id="s-export">
+  <span class="kicker">06 · Guardar y exportar</span>
+  <h1 class="screen-title">Exportar entrevista</h1>
+
+  <div class="resumen-grid" id="resumen-stats"></div>
+
+  <!-- ── EMAIL POR PARTES ─────────────── -->
+  <div class="section-label">Enviar por email · Funciona en cualquier móvil</div>
+  <div class="card" style="margin-bottom:.8rem">
+    <p style="font-size:.86rem;color:var(--muted);line-height:1.65;margin-bottom:1rem">
+      Envía la entrevista en partes separadas para evitar el límite de caracteres de iOS. Pulsa cada botón y confirma el envío en tu app de correo.
+    </p>
+    <div class="campo" style="margin-bottom:.9rem">
+      <label>Dirección de destino</label>
+      <input type="email" id="email-destino" placeholder="proyectos@satil.es" value="proyectos@satil.es">
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.5rem">
+      <button class="btn btn-gold btn-lg" onclick="emailParte('registro')">
+        1 · Enviar registro y notas
+      </button>
+      <button class="btn btn-gold btn-lg" onclick="emailParte('hipotesis')">
+        2 · Enviar hipótesis y síntesis
+      </button>
+      <button class="btn btn-blue btn-lg" onclick="emailParte('citas')">
+        3 · Enviar solo citas y oportunidades
+      </button>
+    </div>
+  </div>
+
+  <!-- ── VISOR CON COPIA ──────────────── -->
+  <div class="section-label">Ver en pantalla y copiar</div>
+  <div class="card" style="margin-bottom:.8rem">
+    <p style="font-size:.86rem;color:var(--muted);line-height:1.65;margin-bottom:.9rem">
+      Selecciona qué quieres ver, cópialo con el botón y pégalo en Notes, WhatsApp, email o donde quieras.
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.7rem">
+      <button class="btn btn-ghost" onclick="mostrarVisor('sintesis')">Síntesis</button>
+      <button class="btn btn-ghost" onclick="mostrarVisor('notas')">Notas</button>
+      <button class="btn btn-ghost" onclick="mostrarVisor('hipotesis')">Hipótesis</button>
+      <button class="btn btn-ghost" onclick="mostrarVisor('completo')">Todo</button>
+    </div>
+    <!-- área de texto grande, seleccionable, con botón de copiar -->
+    <div style="position:relative">
+      <textarea id="visor-texto" style="
+        width:100%;min-height:240px;
+        background:#fff;color:#1a1916;
+        border:2px solid var(--border2);border-radius:9px;
+        padding:.8rem 1rem;font-size:.85rem;
+        font-family:ui-monospace,'SF Mono',Consolas,monospace;
+        outline:none;resize:vertical;line-height:1.6;
+        -webkit-user-select:text;user-select:text;
+      " placeholder="Pulsa un botón para cargar los datos aquí…" readonly
+         onclick="this.select()"
+         onfocus="this.select()"></textarea>
+    </div>
+    <button class="btn btn-ok btn-lg" style="width:100%;margin-top:.6rem" onclick="copiarVisor()">
+      Copiar al portapapeles
+    </button>
+    <p style="font-size:.74rem;color:var(--muted);margin-top:.5rem;text-align:center">
+      Si el botón no funciona, toca dentro del texto → Seleccionar todo → Copiar
+    </p>
+  </div>
+
+  <!-- ── ENTREVISTAS GUARDADAS ─────────── -->
+  <div class="section-label">Entrevistas guardadas en este dispositivo</div>
+  <div id="lista-entrevistas"></div>
+
+  <div class="div-sep"></div>
+  <button class="btn btn-danger btn-sm" onclick="nuevaEntrevista()">
+    Iniciar nueva entrevista (borra la actual)
+  </button>
+</section>
+
+</main>
+</div>
+
+<!-- ── BARRA INFERIOR ───────────────────── -->
+<nav class="bottom-bar">
+  <button class="bb-prev" id="bbPrev" onclick="navegar(-1)" disabled>← Anterior</button>
+  <div class="bb-center">
+    <div class="bb-dots" id="bbDots"></div>
+    <div class="bb-pag" id="bbPag">1 / 6</div>
+  </div>
+  <button class="bb-next" id="bbNext" onclick="navegar(1)">Siguiente →</button>
+</nav>
+
+<!-- ── TOAST ────────────────────────────── -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ════════════════════════════════════════════════════
+// DATOS DE PREGUNTAS
+// ════════════════════════════════════════════════════
+const PREGUNTAS = {
+  base: [
+    {
+      bloque: "Apertura",
+      preguntas: [
+        { id:"b1", txt:"¿Me cuentas con quién has venido hoy a Dinópolis?", sub:"Observa composición del grupo. Deja que fluya.", tags:["familia","pareja","grupo","solo"] },
+        { id:"b2", txt:"¿Es vuestra primera vez o ya habíais estado antes?", sub:"", tags:["primera","repetidor"] },
+        { id:"b3", txt:"¿De dónde venís? ¿Cómo surgió la idea de venir hoy?", sub:"¿Decisión propia, recomendada, parte de un viaje mayor?", tags:["planificado","espontaneo","recomendado"] },
+        { id:"b4", txt:"¿Qué esperabais encontrar antes de llegar?", sub:"Expectativas previas. Escucha sin guiar.", tags:["expectativa-alta","expectativa-media","sin-expectativa-previa"] },
+      ]
+    },
+    {
+      bloque: "Antes de la visita",
+      preguntas: [
+        { id:"b5", txt:"Antes de venir, ¿buscasteis información sobre el parque?", sub:"¿Dónde? Web, redes, Google, recomendación, hotel...", tags:["web","redes","recomendacion","sin-busqueda"] },
+        { id:"b6", txt:"¿Encontrasteis fácilmente lo que necesitabais saber?", sub:"Indaga en qué no quedó claro.", tags:["facil","dificultad-web","precio-confuso","horarios-confusos"] },
+        { id:"b7", txt:"¿Comprasteis las entradas antes o al llegar?", sub:"Si fue online, ¿fue sencillo? Si en taquilla, ¿por qué?", tags:["online","taquilla","duda-precio"] },
+        { id:"b8", txt:"¿Os hicisteis una idea de cuánto tiempo necesitabais?", sub:"¿Veníais con plan o prefierís decidir sobre la marcha?", tags:["con-plan","sin-plan"] },
+      ]
+    },
+    {
+      bloque: "Llegada y primer contacto",
+      preguntas: [
+        { id:"b9", txt:"Al llegar, ¿cómo fue la entrada al parque? ¿Encontraron el aparcamiento fácilmente?", sub:"Primer contacto físico con el espacio.", tags:["aparcamiento-facil","aparcamiento-dificil","acceso-claro","acceso-confuso"] },
+        { id:"b10", txt:"¿Supisteis enseguida por dónde empezar? ¿Alguien os orientó o lo resolvisteis solos?", sub:"¿Proactividad del personal o autonomía forzada?", tags:["orientados-personal","autonomos","desorientados"] },
+        { id:"b11", txt:"¿Qué fue lo primero que hicisteis al entrar?", sub:"Decisión real vs. plan previsto.", tags:[] },
+      ]
+    },
+    {
+      bloque: "Organización y toma de decisiones",
+      preguntas: [
+        { id:"b12", txt:"Una vez dentro, ¿cómo decidisteis el recorrido?", sub:"¿Con mapa, por intuición, siguiendo al grupo...?", tags:["mapa","intuicion","personal","otros-visitantes"] },
+        { id:"b13", txt:"¿Los horarios os ayudaron o condicionaron demasiado?", sub:"Los espectáculos fuerzan decisiones en cadena.", tags:["horarios-utiles","horarios-condicionantes","no-sabian-horarios"] },
+        { id:"b14", txt:"¿Hubo algún momento en el que no supierais qué hacer después?", sub:"Momento de desorientación o de decisión difícil.", tags:["perdidos","dudaron","cambiaron-plan"] },
+        { id:"b15", txt:"¿Sentisteis que os faltaba tiempo o que el ritmo era cómodo?", sub:"¿Se perdieron algo que querían ver?", tags:["falta-tiempo","ritmo-ok","demasiado-tiempo"] },
+      ]
+    },
+    {
+      bloque: "Orientación e información",
+      preguntas: [
+        { id:"b16", txt:"¿Os ha resultado fácil orientaros dentro del parque?", sub:"¿Señales, mapas, personal, intuición?", tags:["señaletica-ok","señaletica-confusa","mapa-util","mapa-confuso"] },
+        { id:"b17", txt:"¿Ha habido algún punto donde os hayáis sentido perdidos?", sub:"Localizar la zona concreta si la recuerdan.", tags:["zona-museo","zona-atracciones","zona-transito","salida"] },
+        { id:"b18", txt:"¿Habéis tenido que preguntar algo al personal? ¿Cómo fue la atención?", sub:"Qué preguntaron, cómo respondió el equipo.", tags:["atencion-excelente","atencion-correcta","atencion-lenta","nadie-disponible"] },
+      ]
+    },
+    {
+      bloque: "Experiencia con contenidos",
+      preguntas: [
+        { id:"b19", txt:"De todo lo que habéis visto o hecho, ¿qué momento destacaríais?", sub:"El momento de más valor. Escucha el lenguaje emocional.", tags:["espectaculo","atracciones","museo","exterior","guia"] },
+        { id:"b20", txt:"¿Qué parte os ha sorprendido más? ¿Y cuál fue más floja o difícil de seguir?", sub:"Equilibrio positivo-negativo en el mismo turno.", tags:["sorpresa-positiva","decepcion","contenido-denso","contenido-atractivo"] },
+        { id:"b21", txt:"¿Los niños han conectado con lo que estaban viendo? ¿Qué les ha enganchado más?", sub:"Solo si hay niños en el grupo.", tags:["ninos-enganchados","ninos-aburridos","ninos-activos"] },
+        { id:"b22", txt:"¿Hubo algún momento especialmente emocionante, divertido o memorable?", sub:"La pregunta del recuerdo. Deja que elijan.", tags:["guau","momento-familiar","aprendizaje","risa","susto-positivo"] },
+      ]
+    },
+    {
+      bloque: "Comodidad y ritmos",
+      preguntas: [
+        { id:"b23", txt:"¿Cómo habéis vivido los tiempos de espera?", sub:"Colas, esperas entre espectáculos, saturación.", tags:["esperas-ok","esperas-largas","saturacion","sin-esperas"] },
+        { id:"b24", txt:"¿Habéis encontrado suficientes momentos y lugares para descansar?", sub:"Sombra, asientos, ritmo físico.", tags:["descanso-ok","falta-sombra","falta-asientos","cansancio"] },
+      ]
+    },
+    {
+      bloque: "Restauración y tienda",
+      preguntas: [
+        { id:"b25", txt:"¿Habéis utilizado la restauración del parque? ¿Cómo fue esa parte?", sub:"Cuándo, qué comieron, cómo influyó en el ánimo.", tags:["restauracion-bien","espera-comida","oferta-limitada","precios-altos","no-comieron-aqui"] },
+        { id:"b26", txt:"¿Habéis pasado por la tienda? ¿Qué papel tuvo: recuerdo, compra, paseo?", sub:"¿Conectó con lo vivido o fue un espacio separado?", tags:["compra-si","compra-no","tienda-conectada","tienda-generica"] },
+      ]
+    },
+    {
+      bloque: "Valor global y cierre",
+      preguntas: [
+        { id:"b27", txt:"Si tuvierais que resumir la visita en una frase, ¿cuál sería?", sub:"La pregunta más directa al recuerdo. Sin guiar.", tags:[] },
+        { id:"b28", txt:"¿Ha habido algo que os haya sorprendido para bien? ¿Y algo que mejoraríais?", sub:"Equilibrio entre lo positivo y el área de mejora.", tags:["supero-expectativas","bajo-expectativas","mejora-orientacion","mejora-contenido"] },
+        { id:"b29", txt:"¿Recomendaríais la visita? ¿A quién? ¿Volveríais?", sub:"El indicador más honesto de valor percibido.", tags:["recomendaria","no-recomendaria","volveria","volveria-con-novedad"] },
+        { id:"b30", txt:"Si tuviera que decirme una sola cosa que cambiaría para que la próxima familia lo pase todavía mejor, ¿cuál sería?", sub:"La pregunta final. Silencio después. Deja que piensen.", tags:[] },
+      ]
+    },
+  ],
+
+  "familia-pequenos": [
+    { bloque:"B1 · Familias niños pequeños", preguntas:[
+      { id:"fp1", txt:"¿Qué edad tienen los niños que vienen con vosotros?", sub:"", tags:[] },
+      { id:"fp2", txt:"¿Qué necesitáis como familia para que una visita así funcione bien?", sub:"Escucha sus propias palabras sobre sus necesidades.", tags:[] },
+      { id:"fp3", txt:"¿Los niños han entendido lo que iban viendo o lo han vivido más como juego?", sub:"", tags:["entienden","juegan","mezcla"] },
+      { id:"fp4", txt:"¿Ha habido alguna necesidad práctica difícil de resolver: baño, comida, carrito, sombra, espera?", sub:"", tags:["bano","carrito","sombra","comida","espera"] },
+      { id:"fp5", txt:"¿Os habría ayudado una recomendación de recorrido familiar por edades?", sub:"", tags:["si-recorrido-sugerido","no-necesario"] },
+    ]}
+  ],
+  "familia-mixta": [
+    { bloque:"B2 · Familias edades mixtas", preguntas:[
+      { id:"fm1", txt:"¿Las edades de los niños han hecho fácil o difícil organizar la visita?", sub:"", tags:["facil","dificil","tension-edades"] },
+      { id:"fm2", txt:"¿Ha habido momentos donde unos querían una cosa y otros otra? ¿Cómo lo habéis resuelto?", sub:"", tags:[] },
+      { id:"fm3", txt:"¿Qué parte ha funcionado mejor para todo el grupo? ¿Y cuál ha quedado más descompensada?", sub:"", tags:[] },
+      { id:"fm4", txt:"¿Os habría ayudado información diferenciada por edades o intereses?", sub:"", tags:["si","no"] },
+    ]}
+  ],
+  "repetidor": [
+    { bloque:"B3 · Repetidores", preguntas:[
+      { id:"rp1", txt:"¿Cuántas veces habíais venido antes? ¿Qué os hace volver?", sub:"", tags:["tradicion","ninos","cercanía","novedad"] },
+      { id:"rp2", txt:"¿Habéis notado cambios respecto a otras veces? ¿Qué sigue funcionando?", sub:"", tags:["cambios-positivos","igual-que-siempre","algo-peor"] },
+      { id:"rp3", txt:"¿Qué se os queda más repetido o menos sorprendente?", sub:"", tags:[] },
+      { id:"rp4", txt:"¿Qué tendría que ofrecer Dinópolis para que volver fuera todavía más atractivo?", sub:"", tags:[] },
+    ]}
+  ],
+  "turista": [
+    { bloque:"B4 · Turistas", preguntas:[
+      { id:"t1", txt:"¿Dinópolis era el motivo principal del viaje o una parte más?", sub:"", tags:["motivo-principal","parte-del-viaje"] },
+      { id:"t2", txt:"¿Qué imagen teníais de Dinópolis antes de venir? ¿Y qué imagen os lleváis ahora?", sub:"", tags:["imagen-mejor","imagen-igual","imagen-menor"] },
+      { id:"t3", txt:"¿La información para organizar el viaje os resultó suficiente?", sub:"", tags:["info-suficiente","info-insuficiente","calcular-tiempos-dificil"] },
+      { id:"t4", txt:"¿Qué conexión habéis percibido con Teruel o con Aragón?", sub:"", tags:["conexion-territorio","sin-conexion"] },
+      { id:"t5", txt:"¿Recomendaríais venir desde fuera expresamente?", sub:"", tags:["si-vale-viaje","solo-si-pasa-por-aqui"] },
+    ]}
+  ],
+  "cultural": [
+    { bloque:"B5 · Interés cultural", preguntas:[
+      { id:"c1", txt:"¿Venías con interés previo en paleontología, ciencia o museos?", sub:"", tags:["experto","curioso","sin-interes-previo"] },
+      { id:"c2", txt:"¿El contenido te ha parecido riguroso y bien explicado?", sub:"", tags:["rigor-alto","rigor-ok","poco-profundo"] },
+      { id:"c3", txt:"¿El equilibrio entre ocio y contenido científico te ha parecido adecuado?", sub:"", tags:["equilibrio-bien","demasiado-ocio","demasiado-ciencia"] },
+      { id:"c4", txt:"¿Qué podría reforzar Dinópolis para públicos con mayor interés científico?", sub:"", tags:[] },
+    ]}
+  ],
+  "ocio": [
+    { bloque:"B6 · Ocio familiar", preguntas:[
+      { id:"o1", txt:"¿La parte científica os ha interesado más de lo que esperabais, menos o igual?", sub:"", tags:["mas-de-lo-esperado","igual","menos"] },
+      { id:"o2", txt:"¿Qué momentos han sido más divertidos? ¿Qué ha funcionado mejor para compartir?", sub:"", tags:[] },
+      { id:"o3", txt:"¿Ha habido alguna parte que se hiciera demasiado densa?", sub:"", tags:["museo-denso","paneles-densos","ok"] },
+      { id:"o4", txt:"¿Qué equilibrio os gustaría entre aprender, jugar, espectáculos y descansar?", sub:"", tags:[] },
+    ]}
+  ],
+  "escolar": [
+    { bloque:"B7 · Grupos escolares", preguntas:[
+      { id:"e1", txt:"¿Cuál era el objetivo principal de la visita?", sub:"Educativo, de convivencia, mixto.", tags:["educativo","convivencia","mixto"] },
+      { id:"e2", txt:"¿Los tiempos están funcionando bien para un grupo de este tamaño?", sub:"", tags:["tiempos-ok","muy-rapido","muy-lento"] },
+      { id:"e3", txt:"¿Qué parte tiene más valor educativo? ¿Y cuál genera más dispersión?", sub:"", tags:[] },
+      { id:"e4", txt:"¿El equipo de Dinópolis acompaña suficientemente la dinámica del grupo?", sub:"", tags:["acompanamiento-excelente","correcto","insuficiente"] },
+      { id:"e5", txt:"¿Qué debería pasar después de la visita para reforzar el aprendizaje?", sub:"", tags:[] },
+    ]}
+  ],
+  "accesibilidad": [
+    { bloque:"B8 · Accesibilidad", preguntas:[
+      { id:"a1", txt:"¿La visita os ha resultado cómoda en términos de movilidad y accesibilidad?", sub:"Con cuidado, sin presuponer.", tags:["comoda","dificultades-fisicas","dificultades-informativas"] },
+      { id:"a2", txt:"¿Ha habido algún punto del recorrido bien resuelto? ¿Y alguno difícil o poco claro?", sub:"", tags:[] },
+      { id:"a3", txt:"¿Habéis necesitado pedir ayuda al personal? ¿Cómo fue esa ayuda?", sub:"", tags:["ayuda-buena","ayuda-ok","sin-ayuda"] },
+      { id:"a4", txt:"¿Qué información debería estar más visible antes o durante la visita?", sub:"", tags:[] },
+    ]}
+  ],
+  "restauracion": [
+    { bloque:"B9 · Restauración", preguntas:[
+      { id:"rest1", txt:"¿Cuándo decidisteis comer o tomar algo? ¿Fue fácil decidirlo?", sub:"", tags:["decidieron-pronto","indecision","hambre-urgente"] },
+      { id:"rest2", txt:"¿La experiencia de restauración encajó con el ritmo de la visita?", sub:"", tags:["encajo-bien","interrumpio","necesario-pero-tenso"] },
+      { id:"rest3", txt:"¿La oferta era adecuada para niños / adultos / grupo?", sub:"", tags:["oferta-ok","oferta-limitada","precio-elevado","sin-opciones-ninos"] },
+      { id:"rest4", txt:"¿Cómo influyó ese momento en el ánimo del grupo?", sub:"", tags:["momento-positivo","recuperaron-energia","tension-espera"] },
+    ]}
+  ],
+  "tienda": [
+    { bloque:"B10 · Tienda", preguntas:[
+      { id:"ti1", txt:"¿Entrasteis en la tienda por intención de comprar, por curiosidad o porque estaba en el recorrido?", sub:"", tags:["intencion-compra","curiosidad","paso-obligado"] },
+      { id:"ti2", txt:"¿Encontrasteis productos conectados con lo que habíais vivido durante la visita?", sub:"", tags:["conectados","genericos","mixto"] },
+      { id:"ti3", txt:"¿La tienda ayuda a cerrar la experiencia?", sub:"", tags:["si","no","algo"] },
+      { id:"ti4", txt:"¿Qué haría que la tienda fuese más memorable?", sub:"", tags:[] },
+    ]}
+  ],
+};
+
+const HIPOTESIS = [
+  { id:"h1", cod:"H1", txt:"La experiencia es valiosa pero puede resultar difícil de leer de forma completa" },
+  { id:"h2", cod:"H2", txt:"La orientación y toma de decisiones condicionan mucho la satisfacción global" },
+  { id:"h3", cod:"H3", txt:"La experiencia familiar exige ritmos, descansos y apoyos específicos" },
+  { id:"h4", cod:"H4", txt:"El relato científico y emocional necesita continuidad durante todo el recorrido" },
+  { id:"h5", cod:"H5", txt:"Restauración y tienda son momentos clave del viaje, no servicios secundarios" },
+  { id:"h6", cod:"H6", txt:"El equipo interno posee mucho conocimiento no formalizado" },
+  { id:"h7", cod:"H7", txt:"Existen mejoras incrementales y oportunidades evolutivas diferenciadas" },
+];
+
+// ════════════════════════════════════════════════════
+// ESTADO
+// ════════════════════════════════════════════════════
+const SCREENS = ['s-registro','s-modulos','s-guion','s-hipotesis','s-sintesis','s-export'];
+let pantallaActual = 0;
+let modulosActivos = new Set(['base']);
+let respuestas = {};
+let hipotesisStates = {};
+let prioridad = 'media';
+let tiposSeleccionados = new Set();
+const SK = 'dino_entrevista_v1';
+
+// Grabación
+let mediaRecorder = null;
+let audioChunks = [];
+let grabando = false;
+let timerInterval = null;
+let segundos = 0;
+let recognition = null;
+let transcripcionActiva = false;
+let transcripcionAcum = '';
+
+// ════════════════════════════════════════════════════
+// NAVEGACIÓN
+// ════════════════════════════════════════════════════
+function initDots() {
+  const c = document.getElementById('bbDots');
+  c.innerHTML = '';
+  SCREENS.forEach((_,i) => {
+    const d = document.createElement('div');
+    d.className = 'bb-dot' + (i===0?' active':'');
+    d.onclick = () => irA(SCREENS[i]);
+    c.appendChild(d);
+  });
+}
+
+function irA(id) {
+  const idx = SCREENS.indexOf(id);
+  if(idx < 0) return;
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  pantallaActual = idx;
+  actualizarNav();
+  if(id === 's-guion') generarGuion();
+  if(id === 's-hipotesis') generarHipotesis();
+  if(id === 's-export') generarResumen();
+  window.scrollTo({top:0,behavior:'smooth'});
+  autoguardar();
+}
+
+function navegar(dir) {
+  const nuevo = pantallaActual + dir;
+  if(nuevo < 0 || nuevo >= SCREENS.length) return;
+  irA(SCREENS[nuevo]);
+}
+
+function actualizarNav() {
+  document.getElementById('bbPrev').disabled = pantallaActual === 0;
+  document.getElementById('bbNext').disabled = pantallaActual === SCREENS.length-1;
+  document.getElementById('bbPag').textContent = (pantallaActual+1)+' / '+SCREENS.length;
+  document.querySelectorAll('.bb-dot').forEach((d,i) => d.classList.toggle('active', i===pantallaActual));
+  const pct = ((pantallaActual+1)/SCREENS.length*100);
+  document.getElementById('progFill').style.width = pct+'%';
+  document.getElementById('bbNext').textContent = pantallaActual === SCREENS.length-2 ? 'Finalizar →' : 'Siguiente →';
+}
+
+// ════════════════════════════════════════════════════
+// TIPOS Y MÓDULOS
+// ════════════════════════════════════════════════════
+function toggleTipo(el) {
+  el.classList.toggle('sel');
+  const v = el.dataset.val;
+  if(tiposSeleccionados.has(v)) tiposSeleccionados.delete(v);
+  else tiposSeleccionados.add(v);
+}
+
+function toggleModulo(btn) {
+  if(btn.dataset.mod === 'base') return;
+  btn.classList.toggle('activo');
+  const badge = btn.querySelector('.mod-badge');
+  const mod = btn.dataset.mod;
+  if(modulosActivos.has(mod)) {
+    modulosActivos.delete(mod);
+    badge.textContent = '+ Añadir';
+    badge.classList.remove('activo');
+  } else {
+    modulosActivos.add(mod);
+    badge.textContent = '✓ Activo';
+    badge.classList.add('activo');
+  }
+}
+
+// ════════════════════════════════════════════════════
+// GENERAR GUION
+// ════════════════════════════════════════════════════
+function generarGuion() {
+  const cont = document.getElementById('preguntas-container');
+  cont.innerHTML = '';
+  let pregNum = 0;
+
+  const modsOrdenados = ['base', ...Array.from(modulosActivos).filter(m => m !== 'base')];
+
+  modsOrdenados.forEach(mod => {
+    if(!PREGUNTAS[mod]) return;
+    PREGUNTAS[mod].forEach(bloque => {
+      const bh = document.createElement('div');
+      bh.className = 'section-label';
+      bh.textContent = bloque.bloque;
+      cont.appendChild(bh);
+
+      bloque.preguntas.forEach(pq => {
+        pregNum++;
+        const div = document.createElement('div');
+        div.className = 'pregunta' + (respuestas[pq.id]?.nota ? ' done' : '');
+        div.id = 'preg-'+pq.id;
+
+        let tagsHtml = '';
+        if(pq.tags && pq.tags.length) {
+          tagsHtml = `<div class="tag-list">${pq.tags.map(t =>
+            `<span class="tag${respuestas[pq.id]?.tags?.includes(t)?' sel':''}" onclick="toggleTag('${pq.id}','${t}',this)">${t}</span>`
+          ).join('')}</div>`;
+        }
+
+        div.innerHTML = `
+          <div class="preg-head">
+            <div class="preg-num" id="pnum-${pq.id}">${pregNum}</div>
+            <div class="preg-texto">${pq.txt}</div>
+          </div>
+          ${pq.sub ? `<div class="preg-sub">${pq.sub}</div>` : ''}
+          ${tagsHtml}
+          <div class="preg-notas">
+            <textarea placeholder="Notas · respuesta · cita literal..." id="nota-${pq.id}"
+              oninput="guardarNota('${pq.id}',this)">${respuestas[pq.id]?.nota||''}</textarea>
+          </div>
+          <div class="preg-actions">
+            <button class="btn btn-ok btn-sm" onclick="marcarHecha('${pq.id}',this)">
+              ${respuestas[pq.id]?.hecha ? '✓ Hecha' : 'Marcar hecha'}
+            </button>
+            <button class="btn btn-ghost btn-sm" onclick="insertarTranscripcion('${pq.id}')">← Insertar transcripción</button>
+          </div>`;
+        cont.appendChild(div);
+        if(respuestas[pq.id]?.hecha) div.classList.add('done');
+      });
+    });
+  });
+}
+
+function toggleTag(id, tag, el) {
+  if(!respuestas[id]) respuestas[id] = { nota:'', tags:[], hecha:false };
+  const tags = respuestas[id].tags;
+  const idx = tags.indexOf(tag);
+  if(idx>-1) { tags.splice(idx,1); el.classList.remove('sel'); }
+  else { tags.push(tag); el.classList.add('sel'); }
+  autoguardar();
+}
+
+function guardarNota(id, el) {
+  if(!respuestas[id]) respuestas[id] = { nota:'', tags:[], hecha:false };
+  respuestas[id].nota = el.value;
+  const preg = document.getElementById('preg-'+id);
+  if(el.value.trim()) preg.classList.add('active-q');
+  else preg.classList.remove('active-q');
+  autoguardar();
+}
+
+function marcarHecha(id, btn) {
+  if(!respuestas[id]) respuestas[id] = { nota:'', tags:[], hecha:false };
+  respuestas[id].hecha = !respuestas[id].hecha;
+  btn.textContent = respuestas[id].hecha ? '✓ Hecha' : 'Marcar hecha';
+  btn.className = respuestas[id].hecha ? 'btn btn-ok btn-sm' : 'btn btn-ghost btn-sm';
+  document.getElementById('preg-'+id)?.classList.toggle('done', respuestas[id].hecha);
+  autoguardar();
+}
+
+function insertarTranscripcion(id) {
+  const txt = transcripcionAcum.trim();
+  if(!txt) { mostrarToast('No hay transcripción activa'); return; }
+  const ta = document.getElementById('nota-'+id);
+  if(!ta) return;
+  ta.value = (ta.value ? ta.value + '\n\n' : '') + '[TRANSCRIPCIÓN] ' + txt;
+  guardarNota(id, ta);
+  mostrarToast('Transcripción insertada');
+}
+
+// ════════════════════════════════════════════════════
+// HIPÓTESIS
+// ════════════════════════════════════════════════════
+function generarHipotesis() {
+  const g = document.getElementById('hipot-grid');
+  g.innerHTML = '';
+  HIPOTESIS.forEach(h => {
+    const st = hipotesisStates[h.id] || '';
+    const row = document.createElement('div');
+    row.className = 'hipot-row' + (st ? ' h-'+st : '');
+    row.id = 'hrow-'+h.id;
+    row.innerHTML = `
+      <div class="h-cod">${h.cod}</div>
+      <div class="h-txt">${h.txt}</div>
+      <div class="h-btns">
+        <button class="h-btn${st==='ok'?' v':''}" onclick="setHip('${h.id}','ok',this)">✓</button>
+        <button class="h-btn${st==='mod'?' a':''}" onclick="setHip('${h.id}','mod',this)">~</button>
+        <button class="h-btn${st==='no'?' n':''}" onclick="setHip('${h.id}','no',this)">✕</button>
+      </div>`;
+    g.appendChild(row);
+  });
+}
+
+function setHip(id, estado, btn) {
+  hipotesisStates[id] = estado;
+  const row = document.getElementById('hrow-'+id);
+  row.classList.remove('h-ok','h-mod','h-no');
+  row.classList.add('h-'+estado);
+  row.querySelectorAll('.h-btn').forEach(b => b.classList.remove('v','a','n'));
+  const cls = {ok:'v',mod:'a',no:'n'}[estado];
+  btn.classList.add(cls);
+  autoguardar();
+}
+
+// ════════════════════════════════════════════════════
+// GRABACIÓN DE AUDIO
+// ════════════════════════════════════════════════════
+async function toggleGrabacion() {
+  if(!grabando) await iniciarGrabacion();
+  else pararGrabacion();
+}
+
+async function iniciarGrabacion() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(stream);
+    audioChunks = [];
+    mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+    mediaRecorder.onstop = () => {
+      const blob = new Blob(audioChunks, { type: 'audio/webm' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `dino-entrevista-${document.getElementById('r-codigo')?.value||'audio'}-${Date.now()}.webm`;
+      a.click();
+      mostrarToast('Audio descargado');
+    };
+    mediaRecorder.start();
+    grabando = true;
+    segundos = 0;
+    timerInterval = setInterval(() => {
+      segundos++;
+      const m = Math.floor(segundos/60);
+      const s = segundos%60;
+      const t = `${m}:${s.toString().padStart(2,'0')}`;
+      document.getElementById('recTime').textContent = t;
+      document.getElementById('recTime2').textContent = t;
+    }, 1000);
+    setUIGrabando(true);
+    iniciarTranscripcion();
+  } catch(e) {
+    mostrarToast('No se pudo acceder al micrófono');
+    console.warn(e);
+  }
+}
+
+function pararGrabacion() {
+  if(mediaRecorder) mediaRecorder.stop();
+  grabando = false;
+  clearInterval(timerInterval);
+  pararTranscripcion();
+  setUIGrabando(false);
+}
+
+function setUIGrabando(on) {
+  ['recDot','recDot2'].forEach(id => {
+    const d = document.getElementById(id);
+    if(d) d.classList.toggle('grabando', on);
+  });
+  ['recLabel','recLabel2'].forEach(id => {
+    const l = document.getElementById(id);
+    if(l) l.textContent = on ? 'Grabando...' : 'Grabación parada';
+  });
+  ['btnGrabar','btnGrabar2'].forEach(id => {
+    const b = document.getElementById(id);
+    if(b) { b.textContent = on ? 'Detener y guardar audio' : 'Iniciar grabación'; b.style.background = on ? 'var(--warn-bg)' : ''; }
+  });
+  document.getElementById('btnTranscr').style.display = on ? 'inline-flex' : 'none';
+}
+
+// ── TRANSCRIPCIÓN ──────────────────────────────────
+function iniciarTranscripcion() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SpeechRecognition) { mostrarToast('Transcripción no disponible en este navegador'); return; }
+  recognition = new SpeechRecognition();
+  recognition.lang = 'es-ES';
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.onresult = e => {
+    let interim = '';
+    let final = '';
+    for(let i = e.resultIndex; i < e.results.length; i++) {
+      const t = e.results[i][0].transcript;
+      if(e.results[i].isFinal) { final += t + ' '; transcripcionAcum += t + ' '; }
+      else interim += t;
+    }
+    const txt = transcripcionAcum + interim;
+    ['transcriptText','transcriptText2'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.textContent = txt.slice(-300) || 'Escuchando...';
+    });
+    autoguardar();
+  };
+  recognition.onerror = e => console.warn('Speech error:', e.error);
+  recognition.onend = () => { if(grabando) recognition.start(); };
+  recognition.start();
+}
+
+function pararTranscripcion() {
+  if(recognition) { try { recognition.stop(); } catch(e){} }
+}
+
+function toggleTranscripcion() {
+  transcripcionActiva = !transcripcionActiva;
+  ['recTranscript','recTranscript2'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.classList.toggle('visible', transcripcionActiva);
+  });
+}
+
+// ════════════════════════════════════════════════════
+// PRIORIDAD
+// ════════════════════════════════════════════════════
+function setPrioridad(nivel, btn) {
+  prioridad = nivel;
+  ['pr-baja','pr-media','pr-alta'].forEach(id => {
+    const b = document.getElementById(id);
+    if(b) { b.className = 'btn btn-sm btn-ghost'; }
+  });
+  btn.className = 'btn btn-sm btn-gold';
+  autoguardar();
+}
+
+// ════════════════════════════════════════════════════
+// RESUMEN
+// ════════════════════════════════════════════════════
+function generarResumen() {
+  const pregsTotales = Object.values(PREGUNTAS).flatMap(m => m.flatMap(b => b.preguntas)).length;
+  const pregHechas = Object.values(respuestas).filter(r => r.hecha).length;
+  const pregConNota = Object.values(respuestas).filter(r => r.nota?.trim()).length;
+  const hipValidadas = Object.values(hipotesisStates).filter(s => s).length;
+
+  document.getElementById('resumen-stats').innerHTML = `
+    <div class="res-card"><div class="res-num">${pregHechas}</div><div class="res-lbl">Preguntas hechas</div></div>
+    <div class="res-card"><div class="res-num">${pregConNota}</div><div class="res-lbl">Con notas</div></div>
+    <div class="res-card"><div class="res-num">${hipValidadas}/7</div><div class="res-lbl">Hipótesis valoradas</div></div>
+    <div class="res-card"><div class="res-num">${prioridad.toUpperCase()}</div><div class="res-lbl">Prioridad</div></div>
+  `;
+
+  const lista = document.getElementById('lista-entrevistas');
+  try {
+    const guardadas = JSON.parse(localStorage.getItem('dino_entrevistas_index') || '[]');
+    if(!guardadas.length) { lista.innerHTML = '<p style="font-size:.82rem;color:var(--muted)">No hay entrevistas guardadas anteriormente.</p>'; return; }
+    lista.innerHTML = guardadas.map(e => `
+      <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:.8rem">
+        <div>
+          <div style="font-size:.9rem;font-weight:500">${e.codigo||'Sin código'}</div>
+          <div style="font-size:.75rem;color:var(--muted)">${e.fecha||''} · ${e.tipo||''}</div>
+        </div>
+        <div style="display:flex;gap:.4rem">
+          <button class="btn btn-ghost btn-sm" onclick="cargarEntrevista('${e.key}')">Cargar</button>
+          <button class="btn btn-danger btn-sm" onclick="borrarEntrevista('${e.key}',this)">✕</button>
+        </div>
+      </div>`).join('');
+  } catch(e) {}
+}
+
+// ════════════════════════════════════════════════════
+// GUARDADO Y EXPORTACIÓN
+// ════════════════════════════════════════════════════
+function recogerDatos() {
+  const campos = ['r-codigo','r-fecha','r-entrevistador','r-lugar','r-momento','r-primera','r-grupo','r-procedencia','r-observaciones'];
+  const registro = {};
+  campos.forEach(id => { const el = document.getElementById(id); if(el) registro[id] = el.value; });
+
+  const sintesis = {};
+  ['s-ideas','s-expectativas','s-valor','s-fricciones','s-touchpoints','s-necesidades','s-citas','s-oportunidades','s-observaciones','notas-campo'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) sintesis[id] = el.value;
+  });
+
+  return {
+    registro,
+    tipos: [...tiposSeleccionados],
+    modulos: [...modulosActivos],
+    respuestas,
+    hipotesis: hipotesisStates,
+    sintesis,
+    prioridad,
+    transcripcion: transcripcionAcum,
+    guardado: new Date().toISOString(),
+    version: '1.0',
+  };
+}
+
+function autoguardar() {
+  try {
+    const data = recogerDatos();
+    const key = 'dino_entre_' + (data.registro['r-codigo'] || 'borrador');
+    localStorage.setItem(SK, JSON.stringify(data));
+    localStorage.setItem(key, JSON.stringify(data));
+    // índice
+    const idx = JSON.parse(localStorage.getItem('dino_entrevistas_index') || '[]');
+    const existing = idx.findIndex(e => e.key === key);
+    const entry = { key, codigo: data.registro['r-codigo']||'Borrador', fecha: data.registro['r-fecha']||'', tipo: data.tipos.join(', '), ts: data.guardado };
+    if(existing > -1) idx[existing] = entry; else idx.push(entry);
+    localStorage.setItem('dino_entrevistas_index', JSON.stringify(idx));
+    actualizarTsLabel();
+  } catch(e) { console.warn('Autoguardado fallido:', e); }
+}
+
+function actualizarTsLabel() {
+  const d = new Date();
+  const ts = d.toLocaleTimeString('es-ES', {hour:'2-digit',minute:'2-digit'});
+}
+
+function guardarManual() {
+  autoguardar();
+  mostrarToast('Guardado correctamente');
+}
+
+function cargar() {
+  try {
+    const raw = localStorage.getItem(SK);
+    if(!raw) return;
+    const data = JSON.parse(raw);
+
+    if(data.registro) {
+      Object.entries(data.registro).forEach(([id,val]) => {
+        const el = document.getElementById(id);
+        if(el) el.value = val;
+      });
+    }
+    if(data.tipos) {
+      data.tipos.forEach(t => {
+        tiposSeleccionados.add(t);
+        const el = document.querySelector(`[data-val="${t}"]`);
+        if(el) el.classList.add('sel');
+      });
+    }
+    if(data.modulos) {
+      data.modulos.forEach(m => {
+        if(m==='base') return;
+        modulosActivos.add(m);
+        const btn = document.querySelector(`[data-mod="${m}"]`);
+        if(btn) { btn.classList.add('activo'); const badge = btn.querySelector('.mod-badge'); if(badge) { badge.textContent = '✓ Activo'; badge.classList.add('activo'); } }
+      });
+    }
+    if(data.respuestas) respuestas = data.respuestas;
+    if(data.hipotesis) hipotesisStates = data.hipotesis;
+    if(data.sintesis) {
+      Object.entries(data.sintesis).forEach(([id,val]) => {
+        const el = document.getElementById(id);
+        if(el) el.value = val;
+      });
+    }
+    if(data.prioridad) prioridad = data.prioridad;
+    if(data.transcripcion) transcripcionAcum = data.transcripcion;
+  } catch(e) { console.warn('Error al cargar:', e); }
+}
+
+function cargarEntrevista(key) {
+  try {
+    const raw = localStorage.getItem(key);
+    if(!raw) { mostrarToast('No se encontró la entrevista'); return; }
+    localStorage.setItem(SK, raw);
+    location.reload();
+  } catch(e) {}
+}
+
+function borrarEntrevista(key, btn) {
+  if(!confirm('¿Borrar esta entrevista?')) return;
+  localStorage.removeItem(key);
+  const idx = JSON.parse(localStorage.getItem('dino_entrevistas_index') || '[]').filter(e => e.key !== key);
+  localStorage.setItem('dino_entrevistas_index', JSON.stringify(idx));
+  btn.closest('.card').remove();
+  mostrarToast('Entrevista borrada');
+}
+
+function nuevaEntrevista() {
+  if(!confirm('¿Iniciar una nueva entrevista? Se perderá la actual si no la has exportado.')) return;
+  localStorage.removeItem(SK);
+  location.reload();
+}
+
+// ════════════════════════════════════════════════════
+// GENERADORES DE TEXTO
+// ════════════════════════════════════════════════════
+function generarTextoCompleto(data) {
+  const r = data.registro;
+  const sl = {
+    's-ideas':'Ideas principales','s-expectativas':'Expectativas previas',
+    's-valor':'Momentos de valor','s-fricciones':'Fricciones',
+    's-touchpoints':'Puntos de contacto','s-necesidades':'Necesidades no cubiertas',
+    's-citas':'Citas literales','s-oportunidades':'Oportunidades de diseño',
+    's-observaciones':'Observaciones finales','notas-campo':'Notas de campo'
+  };
+  let t = `DINÓPOLIS 25º · ENTREVISTA FASE 2A\n${'='.repeat(44)}\n\n`;
+  t += `Código: ${r['r-codigo']||'—'}  |  Fecha: ${r['r-fecha']||'—'}\n`;
+  t += `Entrevistador/a: ${r['r-entrevistador']||'—'}\n`;
+  t += `Lugar: ${r['r-lugar']||'—'}  |  Momento: ${r['r-momento']||'—'}\n`;
+  t += `Grupo: ${r['r-grupo']||'—'}  |  Procedencia: ${r['r-procedencia']||'—'}\n`;
+  t += `Perfiles: ${data.tipos.join(', ')||'—'}\n`;
+  t += `Módulos: ${data.modulos.join(', ')}\n`;
+
+  t += `\nNOTAS POR PREGUNTA\n${'─'.repeat(36)}\n`;
+  let hay = false;
+  Object.entries(data.respuestas).forEach(([id,resp]) => {
+    if(resp.nota?.trim()){
+      hay = true;
+      t += `\n[${id.toUpperCase()}]\n${resp.nota.trim()}\n`;
+      if(resp.tags?.length) t += `→ ${resp.tags.join(' · ')}\n`;
+    }
+  });
+  if(!hay) t += 'Sin notas.\n';
+
+  t += `\nHIPÓTESIS\n${'─'.repeat(36)}\n`;
+  HIPOTESIS.forEach(h => {
+    const st = data.hipotesis[h.id];
+    const lb = {ok:'✓ VÁLIDA',mod:'~ AJUSTAR',no:'✕ DESCARTADA'}[st]||'· Sin valorar';
+    t += `${h.cod} ${lb}\n   ${h.txt}\n`;
+  });
+
+  t += `\nSÍNTESIS\n${'─'.repeat(36)}\n`;
+  Object.entries(sl).forEach(([id,lbl]) => {
+    const v = data.sintesis[id];
+    if(v?.trim()) t += `\n${lbl}:\n${v.trim()}\n`;
+  });
+
+  t += `\nPRIORIDAD: ${(data.prioridad||'—').toUpperCase()}\n`;
+  t += `Guardado: ${data.guardado||'—'}\n`;
+  if(data.transcripcion?.trim()) t += `\nTRANSCRIPCIÓN:\n${data.transcripcion.trim()}\n`;
+  return t;
+}
+
+function generarTextSintesis(data) {
+  const r = data.registro;
+  let t = `SÍNTESIS · ${r['r-codigo']||'—'} · ${r['r-fecha']||'—'}\n`;
+  t += `${r['r-grupo']||''} · ${r['r-procedencia']||''}\n`;
+  t += `Prioridad: ${(data.prioridad||'—').toUpperCase()}\n${'─'.repeat(44)}\n`;
+  t += `\nHIPÓTESIS:\n`;
+  HIPOTESIS.forEach(h => {
+    const st = data.hipotesis[h.id];
+    const lb = {ok:'✓',mod:'~',no:'✕'}[st]||'·';
+    t += `${h.cod} ${lb} ${h.txt}\n`;
+  });
+  const campos = {'s-ideas':'Ideas','s-valor':'Momentos de valor','s-fricciones':'Fricciones','s-citas':'Citas literales','s-oportunidades':'Oportunidades'};
+  Object.entries(campos).forEach(([id,lbl]) => {
+    const v = data.sintesis[id];
+    if(v?.trim()) t += `\n${lbl}:\n${v.trim()}\n`;
+  });
+  return t;
+}
+
+function generarTextoNotas(data) {
+  let t = `NOTAS · ${data.registro['r-codigo']||'—'}\n${'─'.repeat(36)}\n\n`;
+  let hay = false;
+  Object.entries(data.respuestas).forEach(([id,resp]) => {
+    if(resp.nota?.trim()){
+      hay=true;
+      t += `[${id.toUpperCase()}]\n${resp.nota.trim()}\n`;
+      if(resp.tags?.length) t += `Tags: ${resp.tags.join(', ')}\n`;
+      t += '\n';
+    }
+  });
+  if(!hay) t += 'Sin notas.\n';
+  const obs = data.sintesis['notas-campo'];
+  if(obs?.trim()) t += `\nOBSERVACIONES:\n${obs.trim()}\n`;
+  return t;
+}
+
+function generarTextoHipotesis(data) {
+  const r = data.registro;
+  let t = `HIPÓTESIS · ${r['r-codigo']||'—'} · ${r['r-fecha']||'—'}\n${'─'.repeat(44)}\n\n`;
+  HIPOTESIS.forEach(h => {
+    const st = data.hipotesis[h.id];
+    const lb = {ok:'✓ VALIDADA',mod:'~ A AJUSTAR',no:'✕ DESCARTADA'}[st]||'· Sin valorar';
+    t += `${h.cod}: ${lb}\n${h.txt}\n\n`;
+  });
+  return t;
+}
+
+// ════════════════════════════════════════════════════
+// EMAIL POR PARTES · El más fiable en Chrome/iOS
+// ════════════════════════════════════════════════════
+function emailParte(parte) {
+  const data = recogerDatos();
+  const destino = document.getElementById('email-destino')?.value || 'proyectos@satil.es';
+  const codigo = data.registro['r-codigo'] || 'Sin código';
+  const fecha = data.registro['r-fecha'] || '';
+
+  let asunto, cuerpo;
+
+  if(parte === 'registro') {
+    asunto = `[Dinópolis 2A] ${codigo} · Registro y notas · ${fecha}`;
+    const r = data.registro;
+    let t = `REGISTRO\n${'─'.repeat(36)}\n`;
+    t += `Código: ${r['r-codigo']||'—'}\nFecha: ${r['r-fecha']||'—'}\n`;
+    t += `Entrevistador/a: ${r['r-entrevistador']||'—'}\nLugar: ${r['r-lugar']||'—'}\n`;
+    t += `Momento: ${r['r-momento']||'—'} | Primera visita: ${r['r-primera']||'—'}\n`;
+    t += `Grupo: ${r['r-grupo']||'—'} | Procedencia: ${r['r-procedencia']||'—'}\n`;
+    t += `Perfiles: ${data.tipos.join(', ')||'—'}\n`;
+    t += `\nNOTAS POR PREGUNTA\n${'─'.repeat(36)}\n`;
+    let hay = false;
+    Object.entries(data.respuestas).forEach(([id,resp]) => {
+      if(resp.nota?.trim()){
+        hay=true;
+        t += `\n[${id.toUpperCase()}]\n${resp.nota.trim()}\n`;
+        if(resp.tags?.length) t += `→ ${resp.tags.join(' · ')}\n`;
+      }
+    });
+    if(!hay) t += 'Sin notas.\n';
+    cuerpo = t;
+
+  } else if(parte === 'hipotesis') {
+    asunto = `[Dinópolis 2A] ${codigo} · Hipótesis y síntesis · ${fecha}`;
+    let t = `HIPÓTESIS\n${'─'.repeat(36)}\n\n`;
+    HIPOTESIS.forEach(h => {
+      const st = data.hipotesis[h.id];
+      const lb = {ok:'✓ VALIDADA',mod:'~ A AJUSTAR',no:'✕ DESCARTADA'}[st]||'· Sin valorar';
+      t += `${h.cod}: ${lb}\n${h.txt}\n\n`;
+    });
+    const campos = {'s-ideas':'Ideas','s-expectativas':'Expectativas','s-valor':'Momentos de valor','s-fricciones':'Fricciones','s-touchpoints':'Puntos de contacto','s-necesidades':'Necesidades no cubiertas','s-observaciones':'Observaciones','notas-campo':'Notas de campo'};
+    t += `\nSÍNTESIS\n${'─'.repeat(36)}\n`;
+    Object.entries(campos).forEach(([id,lbl]) => {
+      const v = data.sintesis[id];
+      if(v?.trim()) t += `\n${lbl}:\n${v.trim()}\n`;
+    });
+    t += `\nPRIORIDAD: ${(data.prioridad||'—').toUpperCase()}\n`;
+    cuerpo = t;
+
+  } else if(parte === 'citas') {
+    asunto = `[Dinópolis 2A] ${codigo} · Citas y oportunidades · ${fecha}`;
+    let t = `CITAS LITERALES\n${'─'.repeat(36)}\n\n`;
+    t += (data.sintesis['s-citas']?.trim() || 'Sin citas registradas.') + '\n\n';
+    t += `OPORTUNIDADES DE DISEÑO\n${'─'.repeat(36)}\n\n`;
+    t += (data.sintesis['s-oportunidades']?.trim() || 'Sin oportunidades registradas.') + '\n\n';
+    if(data.transcripcion?.trim()) {
+      t += `TRANSCRIPCIÓN\n${'─'.repeat(36)}\n\n`;
+      t += data.transcripcion.trim().slice(0, 800) + (data.transcripcion.length > 800 ? '\n[Transcripción truncada]' : '') + '\n';
+    }
+    cuerpo = t;
+  }
+
+  // Truncar a 1400 chars para máxima compatibilidad con iOS Mail
+  const cuerpoFinal = cuerpo.length > 1400
+    ? cuerpo.slice(0, 1400) + '\n\n[Texto truncado — ver datos completos en el dispositivo]'
+    : cuerpo;
+
+  const href = `mailto:${encodeURIComponent(destino)}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpoFinal)}`;
+  window.location.href = href;
+  mostrarToast('Abriendo correo…');
+}
+
+// ════════════════════════════════════════════════════
+// VISOR EN PANTALLA
+// ════════════════════════════════════════════════════
+function mostrarVisor(modo) {
+  const data = recogerDatos();
+  let txt = '';
+  if(modo === 'completo')   txt = generarTextoCompleto(data);
+  else if(modo === 'sintesis')  txt = generarTextSintesis(data);
+  else if(modo === 'notas')     txt = generarTextoNotas(data);
+  else if(modo === 'hipotesis') txt = generarTextoHipotesis(data);
+  const visor = document.getElementById('visor-texto');
+  visor.removeAttribute('readonly');
+  visor.value = txt;
+  visor.setAttribute('readonly','');
+  visor.style.color = '#1a1916';
+  visor.style.background = '#ffffff';
+  visor.focus();
+  // Seleccionar todo para facilitar el copy manual en iOS
+  setTimeout(() => { visor.select(); visor.setSelectionRange(0, 99999); }, 100);
+  mostrarToast('Texto cargado · Toca el área → Seleccionar todo → Copiar');
+}
+
+function copiarVisor() {
+  const visor = document.getElementById('visor-texto');
+  if(!visor.value.trim()) { mostrarVisor('sintesis'); return; }
+  // Seleccionar
+  visor.focus();
+  visor.select();
+  visor.setSelectionRange(0, 99999);
+  // Intentar clipboard API
+  if(navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(visor.value)
+      .then(() => mostrarToast('¡Copiado! Pégalo donde quieras'))
+      .catch(() => {
+        try { document.execCommand('copy'); mostrarToast('¡Copiado!'); }
+        catch(e) { mostrarToast('Toca el texto → Seleccionar todo → Copiar'); }
+      });
+  } else {
+    try { document.execCommand('copy'); mostrarToast('¡Copiado!'); }
+    catch(e) { mostrarToast('Toca el texto → Seleccionar todo → Copiar'); }
+  }
+}
+
+// ════════════════════════════════════════════════════
+// COMPATIBILIDAD: funciones que se llaman desde otros sitios
+// ════════════════════════════════════════════════════
+function enviarEmail(modo) { emailParte(modo === 'sintesis' ? 'citas' : 'registro'); }
+function abrirComoPagina() { mostrarVisor('completo'); }
+function exportarTexto() { mostrarVisor('completo'); }
+function exportarJSON()  { mostrarVisor('completo'); }
+function copiarPortapapeles() { copiarVisor(); }
+function imprimirEntrevista() { mostrarVisor('completo'); }
+
+// ════════════════════════════════════════════════════
+// GENERADOR DE TEXTO COMPLETO (restaurado)
+// ════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════
+// UTILIDADES
+// ════════════════════════════════════════════════════
+function mostrarToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ── SWIPE ──────────────────────────────────────────
+let _sx = 0;
+document.addEventListener('touchstart', e => { _sx = e.touches[0].clientX; }, {passive:true});
+document.addEventListener('touchend', e => {
+  const diff = _sx - e.changedTouches[0].clientX;
+  if(Math.abs(diff) > 55) navegar(diff > 0 ? 1 : -1);
+}, {passive:true});
+
+// ── AUTOGUARDADO EN INPUTS ─────────────────────────
+document.addEventListener('input', e => {
+  if(e.target.matches('input,textarea,select')) autoguardar();
+});
+
+// ── INIT ───────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  initDots();
+  actualizarNav();
+  cargar();
+  // fecha por defecto
+  const fd = document.getElementById('r-fecha');
+  if(fd && !fd.value) fd.value = new Date().toISOString().split('T')[0];
+});
+</script>
+</body>
+</html>
