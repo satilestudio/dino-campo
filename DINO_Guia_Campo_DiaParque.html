@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Dinópolis · Guía de campo · Día en parque</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+:root{
+  --ink:#1a1916;--ink2:#3a3530;--ink3:#7a7060;
+  --gold:#b8862a;--gold2:#d4a84a;
+  --paper:#f8f5ef;--paper2:#f0ebe1;
+  --ok:#0a6144;--ok-bg:#e6f4ee;
+  --warn:#8c2e18;--warn-bg:#faeae6;
+  --blue:#1355a0;--blue-bg:#e8f0fa;
+  --rule:#ddd6c8;
+  --fb:'DM Sans',system-ui,sans-serif;
+}
+body{font-family:var(--fb);background:var(--paper);color:var(--ink);font-size:15px;line-height:1.5}
+
+/* ── CABECERA ── */
+.hdr{
+  background:var(--ink);padding:.85rem 1rem;
+  border-bottom:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:10;
+}
+.hdr-left h1{font-size:.95rem;font-weight:600;color:var(--paper);line-height:1.2}
+.hdr-left p{font-size:.7rem;color:var(--gold2);margin-top:.15rem}
+.hdr-badge{
+  font-size:.62rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;background:rgba(184,134,42,.2);
+  color:var(--gold2);padding:.25rem .6rem;border-radius:20px;
+  white-space:nowrap;
+}
+
+/* ── MAIN ── */
+.main{padding:.8rem .9rem 4rem;max-width:600px;margin:0 auto}
+
+/* ── SECCIÓN ── */
+.sec{margin-bottom:1rem}
+.sec-titulo{
+  font-size:.6rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:.45rem;display:flex;align-items:center;gap:.5rem;
+}
+.sec-titulo::after{content:'';flex:1;height:1px;background:var(--rule)}
+
+/* ── DOS COLUMNAS ── */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1rem}
+@media(max-width:480px){.cols{grid-template-columns:1fr}}
+
+/* ── MODO CARD ── */
+.modo{border-radius:8px;overflow:hidden;border:1px solid var(--rule)}
+.modo-header{
+  padding:.6rem .8rem;display:flex;align-items:center;gap:.5rem;
+}
+.modo-a .modo-header{background:var(--ink)}
+.modo-b .modo-header{background:var(--ok)}
+.modo-letra{
+  font-size:1.1rem;font-weight:700;
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.modo-a .modo-letra{background:var(--gold);color:var(--ink)}
+.modo-b .modo-letra{background:rgba(255,255,255,.25);color:#fff}
+.modo-nombre{font-size:.8rem;font-weight:600;color:#fff;line-height:1.2}
+.modo-sub{font-size:.65rem;color:rgba(255,255,255,.6);font-weight:400}
+.modo-items{background:var(--paper);padding:.6rem .8rem}
+.modo-item{
+  font-size:.8rem;color:var(--ink2);line-height:1.5;
+  padding:.3rem 0;border-bottom:1px solid var(--rule);
+  display:flex;gap:.5rem;
+}
+.modo-item:last-child{border-bottom:none}
+.modo-dot{
+  width:5px;height:5px;border-radius:50%;
+  flex-shrink:0;margin-top:.45rem;
+}
+.modo-a .modo-dot{background:var(--gold)}
+.modo-b .modo-dot{background:var(--ok)}
+
+/* ── FRICCIONES ── */
+.fricciones{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.friccion{
+  background:var(--paper2);border:1px solid var(--rule);
+  border-radius:6px;padding:.5rem .7rem;
+  display:flex;gap:.6rem;align-items:baseline;
+}
+.friccion-cod{
+  font-size:.62rem;font-weight:700;color:var(--warn);
+  background:var(--warn-bg);padding:.1rem .35rem;
+  border-radius:3px;flex-shrink:0;letter-spacing:.03em;
+}
+.friccion-txt{font-size:.8rem;color:var(--ink2);line-height:1.45}
+
+/* ── MOMENTOS ── */
+.momentos{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.momento{
+  background:var(--blue-bg);border:1px solid rgba(19,85,160,.15);
+  border-radius:6px;padding:.5rem .8rem;
+  display:grid;grid-template-columns:90px 1fr;gap:.6rem;align-items:start;
+}
+.momento-hora{
+  font-size:.72rem;font-weight:700;color:var(--blue);
+  text-transform:uppercase;letter-spacing:.04em;
+  padding-top:.05rem;
+}
+.momento-txt{font-size:.8rem;color:var(--ink2);line-height:1.45}
+
+/* ── CITAS ── */
+.citas{
+  background:var(--ink);border-radius:8px;
+  padding:.7rem .9rem;margin-bottom:1rem;
+}
+.citas-titulo{
+  font-size:.6rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:.55rem;
+}
+.cita-item{
+  font-style:italic;font-size:.8rem;
+  color:rgba(248,245,239,.8);line-height:1.5;
+  padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.cita-item:last-child{border-bottom:none}
+
+/* ── URL ── */
+.url-card{
+  background:var(--ok-bg);border:1.5px solid rgba(10,97,68,.3);
+  border-radius:8px;padding:.75rem 1rem;margin-bottom:1rem;
+  text-align:center;
+}
+.url-label{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);margin-bottom:.3rem}
+.url-txt{font-size:.95rem;font-weight:700;color:var(--ok)}
+
+/* ── PROTOCOLO ── */
+.protocolo{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.prot-item{
+  display:flex;gap:.6rem;align-items:start;
+  background:var(--paper2);border:1px solid var(--rule);
+  border-radius:6px;padding:.5rem .7rem;
+}
+.prot-n{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--ink);color:var(--gold);
+  font-size:.7rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:.05rem;
+}
+.prot-txt{font-size:.8rem;color:var(--ink2);line-height:1.5}
+.prot-txt strong{color:var(--ink);font-weight:600}
+
+/* ── REGLA DE ORO ── */
+.regla{
+  background:var(--ink);border-radius:8px;
+  padding:.8rem 1rem;margin-bottom:1rem;
+  border-left:3px solid var(--gold);
+}
+.regla p{font-size:.82rem;color:rgba(248,245,239,.85);line-height:1.6;margin:0}
+.regla strong{color:var(--gold2)}
+
+/* ── PIE ── */
+.pie{
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--paper2);border-top:1px solid var(--rule);
+  padding:.5rem 1rem;text-align:center;
+  font-size:.68rem;color:var(--ink3);
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-left">
+    <h1>Guía de campo · Dinópolis 25º</h1>
+    <p>SATIL Estudio · Fase 2A · Junio 2026</p>
+  </div>
+  <span class="hdr-badge">Día en parque</span>
+</header>
+
+<div class="main">
+
+  <!-- URL HERRAMIENTA -->
+  <div class="url-card">
+    <div class="url-label">Herramienta · Abrir en Chrome antes de entrar</div>
+    <div class="url-txt">satilestudio.github.io/dino-campo</div>
+  </div>
+
+  <!-- DOS MODOS -->
+  <div class="sec-titulo">Los dos modos de trabajo</div>
+  <div class="cols">
+
+    <div class="modo modo-a">
+      <div class="modo-header">
+        <div class="modo-letra">A</div>
+        <div>
+          <div class="modo-nombre">Safari · observación</div>
+          <div class="modo-sub">Ver sin intervenir</div>
+        </div>
+      </div>
+      <div class="modo-items">
+        <div class="modo-item"><div class="modo-dot modo-a"></div>Quedaros en salidas de espectáculos y observad sin intervenir</div>
+        <div class="modo-item"><div class="modo-dot modo-a"></div>Anotad comportamientos, no interpretaciones: "parados 3 min mirando el mapa" no es lo mismo que "desorientados"</div>
+        <div class="modo-item"><div class="modo-dot modo-a"></div>Cronometrad cuando tenga sentido: ¿cuánto tardan en decidir adónde van?</div>
+        <div class="modo-item"><div class="modo-dot modo-a"></div>Fijaos en cómo interactúan con el personal: quién pregunta, qué cara pone cuando le responden</div>
+        <div class="modo-item"><div class="modo-dot modo-a"></div>Buscad las familias paradas, los indecisos, los que corren al ascensor</div>
+      </div>
+    </div>
+
+    <div class="modo modo-b">
+      <div class="modo-header">
+        <div class="modo-letra">B</div>
+        <div>
+          <div class="modo-nombre">Entrevista · conversación</div>
+          <div class="modo-sub">Escuchar, no encuestar</div>
+        </div>
+      </div>
+      <div class="modo-items">
+        <div class="modo-item"><div class="modo-dot modo-b"></div>Arrancad neutral: "¿Ya han terminado o les queda algo?" Sin trampa, es una pregunta real</div>
+        <div class="modo-item"><div class="modo-dot modo-b"></div>Dejad hablar. Tres segundos de silencio antes de la siguiente pregunta: lo mejor aparece ahí</div>
+        <div class="modo-item"><div class="modo-dot modo-b"></div>Id a buscar a quien sale pronto. Son los más difíciles de encontrar y los más valiosos</div>
+        <div class="modo-item"><div class="modo-dot modo-b"></div>Las citas se anotan exactamente como se dicen, con las palabras de esa persona</div>
+        <div class="modo-item"><div class="modo-dot modo-b"></div>Enviad a proyectos@satil.es inmediatamente al acabar, no al final del día</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MOMENTOS DEL DÍA -->
+  <div class="sec-titulo">Momentos clave del día · dónde estar</div>
+  <div class="momentos">
+    <div class="momento">
+      <div class="momento-hora">Antes de entrar</div>
+      <div class="momento-txt">Quince minutos en el aparcamiento. Repasar fricciones e hipótesis, acordar quién hace qué. Abrir la libreta y asignar el código antes de cruzar la entrada.</div>
+    </div>
+    <div class="momento">
+      <div class="momento-hora">Llegada · acceso</div>
+      <div class="momento-txt">No entréis corriendo. El acceso y las taquillas son momentos que el equipo de Dinópolis ya no ve: vosotros sí podéis. Observad cómo llega la gente, qué hace al entrar.</div>
+    </div>
+    <div class="momento">
+      <div class="momento-hora">Salida espectáculo</div>
+      <div class="momento-txt">El momento más valioso para el safari. Quedaos quietos cinco minutos: ¿adónde va la gente? ¿tardan en decidir? ¿hay quién tira del grupo o se dispersan?</div>
+    </div>
+    <div class="momento">
+      <div class="momento-hora">Mediodía</div>
+      <div class="momento-txt">Comed en el parque aunque sea caro: es parte de la investigación. Observad colas, ánimo del grupo, si hay tensión. Las conversaciones en la cola suelen ser las más honestas.</div>
+    </div>
+    <div class="momento">
+      <div class="momento-hora">15h–cierre</div>
+      <div class="momento-txt">Zona de salida, al menos 90 minutos. Buscad especialmente a quien sale antes de tiempo: son los que los datos no recogen y los que más pueden enseñaros.</div>
+    </div>
+    <div class="momento">
+      <div class="momento-hora">Aparcamiento</div>
+      <div class="momento-txt">Antes de subir al coche: cinco minutos de debrief oral. ¿Qué frase no podéis olvidar? ¿Qué os ha sorprendido? ¿Alguna hipótesis que haya cambiado?</div>
+    </div>
+  </div>
+
+  <!-- FRICCIONES CONOCIDAS -->
+  <div class="sec-titulo">Fricciones conocidas · ¿aparecen hoy?</div>
+  <div class="fricciones">
+    <div class="friccion"><span class="friccion-cod">F1</span><span class="friccion-txt">Precio y valor percibido · restauración, entrada, comparación con otros parques</span></div>
+    <div class="friccion"><span class="friccion-cod">F2</span><span class="friccion-txt">Obsolescencia · pantallas, animatrónicos, efectos percibidos como de otra época</span></div>
+    <div class="friccion"><span class="friccion-cod">F3</span><span class="friccion-txt">Orientación de jornada · ¿saben qué hacer después de cada espectáculo?</span></div>
+    <div class="friccion"><span class="friccion-cod">F4</span><span class="friccion-txt">Alturas y horarios · restricciones descubiertas in situ, cierres a las 17h sin avisar</span></div>
+    <div class="friccion"><span class="friccion-cod">F5</span><span class="friccion-txt">Límite de edad · funciona con 4-10 años, falla con adolescentes y preadolescentes</span></div>
+  </div>
+
+  <!-- CITAS DE REFERENCIA -->
+  <div class="citas">
+    <div class="citas-titulo">El tipo de cita que buscamos · referencia</div>
+    <div class="cita-item">"Eso es lo que quieres cuando vas a un sitio así, que no te quedes frío."</div>
+    <div class="cita-item">"Salió diciendo que quería ser paleontólogo."</div>
+    <div class="cita-item">"Estuvimos como dando vueltas, el mapa está bien pero cuesta ubicarte dentro."</div>
+  </div>
+
+  <!-- PROTOCOLO RÁPIDO -->
+  <div class="sec-titulo">Protocolo de entrevista · en 6 pasos</div>
+  <div class="protocolo">
+    <div class="prot-item"><div class="prot-n">1</div><div class="prot-txt"><strong>Arrancad neutral.</strong> "¿Han terminado ya o les queda algo?" No hay trampa: es una pregunta real que abre la conversación sin forzarla.</div></div>
+    <div class="prot-item"><div class="prot-n">2</div><div class="prot-txt"><strong>Pedid el relato, no la valoración.</strong> "¿Cómo fue el día?" antes que "¿Qué les ha gustado más?" La gente baja la guardia cuando cuenta, no cuando opina.</div></div>
+    <div class="prot-item"><div class="prot-n">3</div><div class="prot-txt"><strong>Explorad, no confirmad.</strong> Si alguien menciona una fricción, profundizad en ella. No sugráis la respuesta que esperáis escuchar.</div></div>
+    <div class="prot-item"><div class="prot-n">4</div><div class="prot-txt"><strong>Usad su lenguaje.</strong> Si alguien dice "quedarse frío", usad esa misma metáfora en la siguiente pregunta. La gente sigue contando cuando siente que le estáis escuchando.</div></div>
+    <div class="prot-item"><div class="prot-n">5</div><div class="prot-txt"><strong>Tres segundos de silencio</strong> después de cada respuesta. Es incómodo al principio. Pero lo más valioso de la conversación suele aparecer en ese espacio.</div></div>
+    <div class="prot-item"><div class="prot-n">6</div><div class="prot-txt"><strong>La última pregunta:</strong> "Si pudiera cambiar una sola cosa para que la próxima familia lo pase todavía mejor, ¿cuál sería?" Siempre al final, cuando ya hay confianza.</div></div>
+  </div>
+
+  <!-- REGLA DE ORO -->
+  <div class="regla">
+    <p><strong>La regla de oro del día:</strong> Inmediatamente después de cada entrevista, antes de hablar con nadie, anotar una cosa: <strong>la frase más importante que ha dicho esa persona</strong>. Eso se pierde en diez minutos si no se anota. Todo lo demás puede esperar.</p>
+  </div>
+
+</div>
+
+<div class="pie">
+  SATIL Estudio · Dinópolis 25º · Fase 2A · satilestudio.github.io/dino-campo
+</div>
+
+</body>
+</html>

@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Dinópolis 25º · Dossier de proyecto · Equipo de campo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+:root{
+  --ink:#1a1916;--ink2:#2e2a26;--ink3:#5a5248;
+  --gold:#b8862a;--gold2:#d4a84a;--gold-bg:rgba(184,134,42,.08);
+  --paper:#f8f5ef;--paper2:#f0ebe1;--paper3:#e8e2d6;
+  --rule:#ddd6c8;--rule2:#ccc4b4;
+  --ok:#0a6144;--ok-bg:#e6f4ee;
+  --warn:#8c2e18;--warn-bg:#faeae6;
+  --blue:#1355a0;--blue-bg:#e8f0fa;
+  --cream:#fffdf9;
+  --fl:'Lora',Georgia,serif;
+  --fb:'DM Sans',system-ui,sans-serif;
+}
+body{
+  font-family:var(--fb);background:var(--paper);
+  color:var(--ink);font-size:17px;font-weight:400;
+  line-height:1.7;
+}
+
+/* ── CABECERA ── */
+.portada{
+  background:var(--ink);
+  padding:3rem 1.5rem 2.5rem;
+  border-bottom:3px solid var(--gold);
+}
+.portada-kicker{
+  font-size:.72rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold2);
+  margin-bottom:.9rem;font-family:var(--fb);
+}
+.portada-titulo{
+  font-family:var(--fl);font-size:clamp(2rem,6vw,3rem);
+  font-weight:400;color:var(--paper);line-height:1.1;
+  margin-bottom:.6rem;
+}
+.portada-sub{
+  font-family:var(--fl);font-size:clamp(1rem,3vw,1.3rem);
+  color:rgba(248,245,239,.88);font-style:italic;
+  margin-bottom:1.8rem;line-height:1.4;
+}
+.portada-meta{
+  display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;
+  font-size:.82rem;color:rgba(248,245,239,.75);
+  font-family:var(--fb);
+}
+.portada-meta span{color:rgba(248,245,239,.9)}
+
+/* ── ÍNDICE ── */
+.indice{
+  background:var(--paper2);
+  border-bottom:1px solid var(--rule);
+  padding:1.2rem 1.5rem;
+}
+.indice-titulo{
+  font-size:.65rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:.7rem;
+}
+.indice-lista{
+  display:flex;flex-direction:column;gap:.3rem;
+}
+.indice-item{
+  font-size:.88rem;color:var(--ink2);
+  cursor:pointer;
+  display:flex;align-items:baseline;gap:.6rem;
+  padding:.35rem 0;
+  border-bottom:1px solid var(--rule);
+  transition:color .15s;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.indice-item:last-child{border-bottom:none}
+.indice-item:hover,.indice-item:active{color:var(--gold)}
+.indice-item span{
+  font-size:.68rem;color:var(--gold);
+  font-weight:700;letter-spacing:.04em;
+  flex-shrink:0;width:2rem;
+}
+
+/* ── LAYOUT MAIN ── */
+.main{max-width:720px;margin:0 auto;padding:0 1.2rem 5rem}
+
+/* ── SECCIONES ── */
+.seccion{
+  padding:2.8rem 0 0;
+  border-top:1px solid var(--rule);
+  margin-top:2.8rem;
+}
+.seccion:first-child{border-top:none;margin-top:0;padding-top:2.5rem}
+.sec-kicker{
+  font-size:.65rem;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:.6rem;display:block;
+}
+.sec-titulo{
+  font-family:var(--fl);font-size:clamp(1.4rem,4vw,1.85rem);
+  font-weight:400;line-height:1.15;color:var(--ink);
+  margin-bottom:1rem;
+}
+.sec-intro{
+  font-size:.95rem;color:var(--ink2);line-height:1.75;
+  font-style:italic;
+  border-left:2px solid var(--gold2);padding-left:.9rem;
+  margin-bottom:1.5rem;
+}
+
+/* ── TIPOGRAFÍA CONTENIDO ── */
+p{margin-bottom:1rem;line-height:1.75;color:var(--ink2)}
+p:last-child{margin-bottom:0}
+strong{font-weight:600;color:var(--ink)}
+
+/* ── BLOQUES DESTACADOS ── */
+.bloque-oscuro{
+  background:var(--ink);border-radius:8px;
+  padding:1.2rem 1.4rem;margin:1.4rem 0;
+}
+.bloque-oscuro .bk{
+  font-size:.62rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold2);
+  margin-bottom:.5rem;display:block;
+}
+.bloque-oscuro p{color:#e8e4dc;margin:0;font-size:.95rem}
+
+.bloque-dorado{
+  background:var(--gold-bg);
+  border-left:3px solid var(--gold);
+  border-radius:0 6px 6px 0;
+  padding:1rem 1.2rem;margin:1.2rem 0;
+}
+.bloque-dorado p{color:var(--ink2);margin:0;font-size:.93rem;line-height:1.7}
+
+.bloque-ok{
+  background:var(--ok-bg);
+  border-left:3px solid var(--ok);
+  border-radius:0 6px 6px 0;
+  padding:1rem 1.2rem;margin:1.2rem 0;
+}
+.bloque-ok .bk{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);margin-bottom:.4rem;display:block}
+.bloque-ok p{color:#0a3020;margin:0;font-size:.93rem;line-height:1.7}
+
+.bloque-warn{
+  background:var(--warn-bg);
+  border-left:3px solid var(--warn);
+  border-radius:0 6px 6px 0;
+  padding:1rem 1.2rem;margin:1.2rem 0;
+}
+.bloque-warn .bk{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--warn);margin-bottom:.4rem;display:block}
+.bloque-warn p{color:#3a1008;margin:0;font-size:.93rem;line-height:1.7}
+
+/* ── CITA ── */
+.cita{
+  font-family:var(--fl);font-size:1.05rem;font-style:italic;
+  color:var(--ink);line-height:1.65;
+  border-left:3px solid var(--ink);
+  padding:.8rem 1.1rem;margin:1.4rem 0;
+  background:var(--paper2);border-radius:0 6px 6px 0;
+}
+.cita-autor{
+  display:block;font-size:.78rem;color:var(--ink3);
+  font-style:normal;margin-top:.5rem;font-family:var(--fb);
+}
+
+/* ── TARJETAS ── */
+.tarjetas{display:grid;gap:.7rem;margin:1.2rem 0}
+.tarjeta{
+  background:var(--cream);border:1px solid var(--rule);
+  border-radius:8px;padding:1rem 1.1rem;
+  display:grid;grid-template-columns:40px 1fr;gap:.7rem;
+  align-items:start;
+}
+.tarjeta-num{
+  font-family:var(--fl);font-size:1.4rem;color:var(--gold);
+  line-height:1;padding-top:.1rem;
+}
+.tarjeta-titulo{font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.25rem}
+.tarjeta-desc{font-size:.88rem;color:var(--ink2);line-height:1.6;margin:0}
+
+/* ── FRICCIÓN ── */
+.fricciones{display:flex;flex-direction:column;gap:.6rem;margin:1.2rem 0}
+.friccion{
+  background:var(--cream);border:1px solid var(--rule);
+  border-radius:8px;padding:.9rem 1.1rem;
+  display:grid;grid-template-columns:32px 1fr;gap:.7rem;align-items:start;
+}
+.friccion-cod{
+  font-size:.68rem;font-weight:700;color:var(--warn);
+  background:var(--warn-bg);border-radius:4px;
+  padding:.2rem .3rem;text-align:center;
+  letter-spacing:.04em;margin-top:.1rem;
+}
+.friccion-titulo{font-size:.93rem;font-weight:600;color:var(--ink);margin-bottom:.2rem}
+.friccion-desc{font-size:.84rem;color:var(--ink2);line-height:1.6;margin:0}
+.friccion-cita{
+  font-family:var(--fl);font-size:.84rem;font-style:italic;
+  color:var(--ink3);margin-top:.4rem;display:block;
+  background:rgba(0,0,0,.04);padding:.35rem .6rem;border-radius:4px;
+}
+
+/* ── HIPÓTESIS ── */
+.hipotesis{display:flex;flex-direction:column;gap:.5rem;margin:1.2rem 0}
+.hipot{
+  background:var(--cream);border:1px solid var(--rule);
+  border-radius:8px;padding:.85rem 1.1rem;
+  display:grid;grid-template-columns:38px 1fr;gap:.7rem;align-items:start;
+}
+.hipot-cod{
+  font-family:var(--fl);font-size:.95rem;font-weight:600;
+  color:var(--gold);text-align:center;
+  background:var(--gold-bg);border-radius:4px;
+  padding:.3rem 0;margin-top:.05rem;
+}
+.hipot-txt{font-size:.9rem;color:var(--ink2);line-height:1.55;margin:0}
+.hipot-pista{
+  font-size:.78rem;color:var(--ink2);font-style:italic;
+  margin-top:.3rem;display:block;
+  padding:.3rem .5rem;background:rgba(0,0,0,.04);border-radius:4px;
+}
+
+/* ── MODO CAMPO ── */
+.modo-campo{
+  background:var(--ink);border-radius:10px;
+  overflow:hidden;margin:1.4rem 0;
+}
+.modo-header{
+  padding:.9rem 1.2rem;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;gap:.7rem;
+}
+.modo-badge{
+  font-size:.65rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:.25rem .65rem;
+  border-radius:20px;
+}
+.modo-safari .modo-badge{background:rgba(212,168,74,.2);color:var(--gold2)}
+.modo-entrev .modo-badge{background:rgba(13,147,95,.2);color:#4ecb9a}
+.modo-titulo{
+  font-family:var(--fl);font-size:1.05rem;
+  color:var(--paper);font-weight:400;
+}
+.modo-body{padding:1rem 1.2rem}
+.modo-body p{color:#e4e0d8;font-size:.9rem;margin-bottom:.8rem}
+.modo-body p:last-child{margin:0}
+.modo-item{
+  display:flex;gap:.65rem;align-items:baseline;
+  padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.1);
+  font-size:.88rem;color:#dedad2;
+}
+.modo-item:last-child{border-bottom:none}
+.modo-item-n{
+  flex-shrink:0;font-size:.7rem;font-weight:700;
+  color:var(--gold2);width:20px;
+}
+
+/* ── MOMENTOS ── */
+.momentos{display:flex;flex-direction:column;gap:.5rem;margin:1.2rem 0}
+.momento{
+  background:var(--cream);border:1px solid var(--rule);
+  border-radius:8px;padding:.85rem 1.1rem;
+}
+.momento-titulo{
+  font-size:.82rem;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--blue);
+  margin-bottom:.4rem;
+}
+.momento-desc{font-size:.88rem;color:var(--ink2);line-height:1.6;margin:0}
+
+/* ── STATS ── */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.7rem;margin:1.2rem 0}
+.stat{
+  background:var(--cream);border:1px solid var(--rule);
+  border-radius:8px;padding:.9rem 1rem;text-align:center;
+}
+.stat-num{
+  font-family:var(--fl);font-size:1.8rem;color:var(--gold);
+  font-weight:400;line-height:1;margin-bottom:.3rem;
+}
+.stat-lbl{font-size:.76rem;color:var(--ink2);line-height:1.4}
+
+/* ── PROTOCOLO PASOS ── */
+.pasos{display:flex;flex-direction:column;gap:0;margin:1.2rem 0}
+.paso{
+  display:grid;grid-template-columns:36px 1fr;gap:.7rem;
+  padding:.9rem 0;border-bottom:1px solid var(--rule);
+}
+.paso:last-child{border-bottom:none}
+.paso-n{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--ink);display:flex;align-items:center;
+  justify-content:center;font-size:.78rem;font-weight:700;
+  color:var(--gold);flex-shrink:0;margin-top:.1rem;
+}
+.paso-titulo{font-size:.93rem;font-weight:600;color:var(--ink);margin-bottom:.2rem}
+.paso-desc{font-size:.85rem;color:var(--ink2);line-height:1.6;margin:0}
+
+/* ── PIE ── */
+.pie{
+  background:var(--ink);padding:1.5rem;
+  margin-top:3rem;
+  text-align:center;
+}
+.pie p{font-size:.78rem;color:rgba(248,245,239,.65);margin:0;line-height:1.6}
+.pie strong{color:rgba(248,245,239,.85);font-weight:500}
+
+/* ── PRINT ── */
+@media print{
+  .portada{background:#1a1916;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .bloque-oscuro,.modo-campo{background:#1a1916;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     PORTADA
+═══════════════════════════════════ -->
+<div class="portada">
+  <div class="portada-kicker">SATIL Estudio · CADI · PAIP 2026 · Documento interno de equipo</div>
+  <div class="portada-titulo">Dinópolis 25º<br>Diseño de servicios</div>
+  <div class="portada-sub">Dossier de proyecto para el equipo de campo · Fase 2A</div>
+  <div class="portada-meta">
+    <span>Junio 2026</span>
+    <span>·</span>
+    <span>Uso interno · No distribuir</span>
+    <span>·</span>
+    <span>SATIL Estudio SL</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     ÍNDICE
+═══════════════════════════════════ -->
+<div class="indice">
+  <div class="indice-titulo">Contenido de este documento</div>
+  <div class="indice-lista">
+    <span class="indice-item" onclick="ir('s1')"><span>01</span>Por qué estamos aquí · El proyecto</span>
+    <span class="indice-item" onclick="ir('s2')"><span>02</span>El marco metodológico · CADI Fase 2</span>
+    <span class="indice-item" onclick="ir('s3')"><span>03</span>Lo que ya sabemos · Investigación previa</span>
+    <span class="indice-item" onclick="ir('s4')"><span>04</span>Las cinco fricciones conocidas</span>
+    <span class="indice-item" onclick="ir('s5')"><span>05</span>Las siete hipótesis de trabajo</span>
+    <span class="indice-item" onclick="ir('s6')"><span>06</span>Qué buscamos en campo · Los dos modos</span>
+    <span class="indice-item" onclick="ir('s7')"><span>07</span>Protocolo del día en Dinópolis</span>
+    <span class="indice-item" onclick="ir('s8')"><span>08</span>Herramientas · La libreta de campo</span>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════════════════════════
+     01 · EL PROYECTO
+═══════════════════════════════════ -->
+<section class="seccion" id="s1">
+  <span class="sec-kicker">01 · Por qué estamos aquí</span>
+  <h2 class="sec-titulo">Un parque con 25 años de historia<br>que quiere saber qué quiere el visitante de hoy</h2>
+  <p class="sec-intro">Dinópolis es el parque paleontológico de referencia en España y el principal tractor turístico de Teruel. El 83,9% de sus visitantes viaja expresamente para ir. Pero el mundo ha cambiado, las expectativas también, y hay señales de que algo está empezando a no encajar.</p>
+
+  <p>Dinópolis lleva 25 años con un modelo que ha funcionado: ciencia paleontológica como base, ocio familiar como palanca. Los datos de satisfacción son buenos, el equipo es extraordinario y el visitante repite. Eso no se discute y hay que protegerlo.</p>
+
+  <p>Pero hay otra lectura. Las reseñas negativas no hablan de un fallo concreto que arreglar. Hablan de una sensación acumulada: instalaciones que ya no sorprenden, una propuesta que se le queda pequeña a los adolescentes, un precio que cuesta justificar cuando la tecnología del parque recuerda a otra época. Y una orientación de jornada que depende, demasiado, de que te toque la persona adecuada en taquilla.</p>
+
+  <div class="cita">
+    "Eso es lo que quieres cuando vas a un sitio así, que no te quedes frío."
+    <span class="cita-autor">— Visitante en entrevista de campo</span>
+  </div>
+
+  <p>El equipo interno de Dinópolis lo sabe. En la primera reunión del proyecto lo dijeron con una claridad que vale la pena no perder de vista: <strong>"Tenemos el barco que flota y no se hunde, pero sin saber a dónde está llegando."</strong> Eso es exactamente lo que este proyecto tiene que ayudarles a encontrar.</p>
+
+  <div class="bloque-oscuro">
+    <span class="bk">¿Para qué estamos aquí exactamente?</span>
+    <p>No para decirle a Dinópolis lo que tiene que hacer. Para traer algo que ellos, desde dentro, no pueden traerse a sí mismos: la voz del visitante. Lo que una madre piensa cuando sale con los niños agotados. Lo que un adolescente siente cuando el parque no le engancha. Lo que decide volver o no volver. Eso es el material con el que se diseña.</p>
+  </div>
+
+  <p>Nuestro interlocutor directo es Dinópolis, en la figura de Higinia desde Gerencia, Carlos desde Dirección Comercial, y María, que actúa como bisagra entre el equipo interno y SATIL. El proyecto corre dentro de las ayudas PAIP del Gobierno de Aragón, con la metodología CADI como marco de trabajo.</p>
+</section>
+
+<!-- ═══════════════════════════════════
+     02 · MARCO METODOLÓGICO
+═══════════════════════════════════ -->
+<section class="seccion" id="s2">
+  <span class="sec-kicker">02 · El marco metodológico</span>
+  <h2 class="sec-titulo">CADI Fase 2 · Investigación, mapa de viaje e ideación</h2>
+  <p class="sec-intro">CADI es la metodología de diseño de servicios del Gobierno de Aragón, aplicada a proyectos con financiación PAIP. SATIL trabaja exclusivamente en la Fase 2: la que va de entender el problema a proponer soluciones con fundamento.</p>
+
+  <p>La metodología divide el trabajo en fases para que nadie llegue a proponer soluciones antes de entender el problema. Tiene gracia que sea necesario decirlo, pero en diseño de servicios la tentación de saltarse la investigación es enorme. Nosotros estamos en la <strong>Fase 2A: investigación y diagnóstico</strong>. Todo lo que hagáis en campo esta semana alimenta directamente lo que viene después.</p>
+
+  <div class="tarjetas">
+    <div class="tarjeta">
+      <div class="tarjeta-num">2A</div>
+      <div>
+        <div class="tarjeta-titulo">Investigación · Dónde estamos ahora</div>
+        <p class="tarjeta-desc">Análisis de lo que ya existe, trabajo de campo con visitantes y equipo, observación en parque. Es la fase en la que estáis. Lo que traigáis construye todo lo demás.</p>
+      </div>
+    </div>
+    <div class="tarjeta">
+      <div class="tarjeta-num">2B</div>
+      <div>
+        <div class="tarjeta-titulo">Diagnóstico · Lo que viene después</div>
+        <p class="tarjeta-desc">Síntesis de hallazgos, mapa de viaje del visitante, identificación del reto central de diseño. Se construye con lo que vosotros traigáis del campo.</p>
+      </div>
+    </div>
+    <div class="tarjeta">
+      <div class="tarjeta-num">2C</div>
+      <div>
+        <div class="tarjeta-titulo">Ideación y prototipado</div>
+        <p class="tarjeta-desc">Generar ideas, probarlas, descartar las que no funcionan. El equipo de Dinópolis participa aquí directamente: no se diseña para ellos sino con ellos.</p>
+      </div>
+    </div>
+    <div class="tarjeta">
+      <div class="tarjeta-num">2D</div>
+      <div>
+        <div class="tarjeta-titulo">Blueprint y KPIs · El cierre</div>
+        <p class="tarjeta-desc">El mapa completo del servicio rediseñado, con indicadores concretos para saber si las mejoras están funcionando. El entregable final que queda en manos de Dinópolis.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloque-dorado">
+    <p><strong>Por qué merece la pena hacer bien esta fase.</strong> Hay una diferencia entre saber que algo no funciona y entender por qué no funciona. La investigación existe para saltar esa distancia. Lo que traigáis del campo —frases exactas, momentos de duda, gestos, silencios— es el material sobre el que se construye todo lo demás. No hay forma de inventárselo desde una mesa.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     03 · LO QUE YA SABEMOS
+═══════════════════════════════════ -->
+<section class="seccion" id="s3">
+  <span class="sec-kicker">03 · Lo que ya sabemos</span>
+  <h2 class="sec-titulo">La investigación previa · Datos, encuestas y reseñas</h2>
+  <p class="sec-intro">Antes de salir al campo, SATIL analizó los datos de satisfacción de 2025, reseñas de Tripadvisor, datos de restauración y observaciones en salidas de espectáculos. No llegáis en blanco.</p>
+
+  <p>La foto general es buena. Pero tiene una grieta. Los indicadores de satisfacción declarada son muy altos —y son reales— pero capturan principalmente a quien ha completado la jornada. Quien se va antes, quien sale frustrado, quien decide no recomendar el parque: esa persona raramente llega a la encuesta. Las reseñas de internet cuentan otra cosa.</p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">93,4%</div>
+      <div class="stat-lbl">volvería a visitar Dinópolis</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">98,9%</div>
+      <div class="stat-lbl">recomendaría la visita</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">61,2%</div>
+      <div class="stat-lbl">dice que superó sus expectativas</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">9,53</div>
+      <div class="stat-lbl">valoración media del personal · sobre 10</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">76,1%</div>
+      <div class="stat-lbl">es su primera visita al parque</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">7h 13'</div>
+      <div class="stat-lbl">duración media de visita</div>
+    </div>
+  </div>
+
+  <p>El personal es, por mucho, el activo más diferencial: 9,53 sobre 10, y aparece una y otra vez en las reseñas positivas como motivo de recomendación. No es un detalle anecdótico. <strong>Cualquier mejora que propongamos tiene que apoyarse en ese conocimiento, no rodearle.</strong></p>
+
+  <div class="bloque-ok">
+    <span class="bk">Lo que funciona y hay que proteger</span>
+    <p>La combinación de ciencia y ocio sigue siendo diferencial. El museo paleontológico es una fortaleza real. Los espectáculos, cuando funcionan, generan el tipo de emoción que la gente recuerda y recomienda. Y el 60,9% de visitantes llegó por boca-oreja: hay algo que la gente quiere contar a otros. Eso no se improvisa.</p>
+  </div>
+
+  <div class="bloque-warn">
+    <span class="bk">Lo que las reseñas negativas dicen</span>
+    <p>La crítica no señala un fallo concreto que arreglar. Señala una sensación acumulada que se resume más o menos así: "He pagado bastante, he esperado en algunos sitios, no he podido hacer todo lo que esperaba y hay partes del parque que ya no me han sorprendido." Eso es lo que aparece en las reseñas de 1 y 2 estrellas, con distintas palabras pero el mismo fondo.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     04 · LAS CINCO FRICCIONES
+═══════════════════════════════════ -->
+<section class="seccion" id="s4">
+  <span class="sec-kicker">04 · Las cinco fricciones conocidas</span>
+  <h2 class="sec-titulo">Dónde la experiencia no cumple la expectativa</h2>
+  <p class="sec-intro">Estos cinco patrones aparecen de forma consistente en los datos cuantitativos, en las reseñas y en la observación directa. No son hipótesis: ya han emergido. El trabajo de campo tiene que confirmar cómo, cuándo y con qué intensidad.</p>
+
+  <div class="fricciones">
+
+    <div class="friccion">
+      <div class="friccion-cod">F1</div>
+      <div>
+        <div class="friccion-titulo">Precio y valor percibido</div>
+        <p class="friccion-desc">La queja no va solo contra el precio de la entrada. Va contra la ecuación completa: lo que se paga, lo que se recibe, el esfuerzo que ha costado llegar hasta Teruel y lo que ofrecen otros parques por un precio similar. La restauración lo amplifica: cuando no puedes traer comida ni salir a comer fuera, el visitante siente que no tiene salida.</p>
+        <span class="friccion-cita">"36€ por cabeza que en realidad no cuesta ni 10€ lo que ofrecen." · "Una tarrina de dos bolas, 6,90€."</span>
+      </div>
+    </div>
+
+    <div class="friccion">
+      <div class="friccion-cod">F2</div>
+      <div>
+        <div class="friccion-titulo">Obsolescencia y desfase tecnológico</div>
+        <p class="friccion-desc">No es que una pantalla falle o un animatrónico chirríe. Es que el conjunto da la sensación de que el parque lleva años sin renovarse. Pantallas, efectos especiales, calidad técnica de las atracciones: todo se compara con lo que la gente ve en otros sitios o en casa. Y esa comparación no siempre sale bien. Es el foco que conecta directamente con el debate del equipo sobre el gran espectáculo.</p>
+        <span class="friccion-cita">"Pantallas viejas con calidad de imagen de los años 90." · "Hace 20 años… vale. ¿Ahora? Ni vayáis."</span>
+      </div>
+    </div>
+
+    <div class="friccion">
+      <div class="friccion-cod">F3</div>
+      <div>
+        <div class="friccion-titulo">Orientación y coreografía de la jornada</div>
+        <p class="friccion-desc">El mapa está. La señalética existe. El problema es otro: después de cada espectáculo, el visitante no sabe qué debería hacer a continuación, cuánto tiempo le queda, qué pierde si va a un sitio antes que a otro. Hemos observado familias paradas más de tres minutos a la salida de un espectáculo, sin decidir. Decisiones tomadas porque otro grupo se fue por allí. Carreras de último minuto hacia el ascensor.</p>
+        <span class="friccion-cita">"Estuvimos como dando vueltas, el mapa está bien pero cuesta ubicarte dentro."</span>
+      </div>
+    </div>
+
+    <div class="friccion">
+      <div class="friccion-cod">F4</div>
+      <div>
+        <div class="friccion-titulo">Alturas, horarios y expectativa incumplida</div>
+        <p class="friccion-desc">Un niño que ha podido subir al simulador por la mañana y por la tarde no le dejan. Una atracción que cierra a las 17h y nadie lo había dicho antes. La restricción de seguridad es completamente razonable. Lo que no es razonable es que el visitante la descubra en el momento, sin haber podido planificarse. El problema no es la norma: es cuándo y cómo se comunica.</p>
+        <span class="friccion-cita">"Por la mañana mi hijo subió al simulador 4D, por la tarde no le dejaron."</span>
+      </div>
+    </div>
+
+    <div class="friccion">
+      <div class="friccion-cod">F5</div>
+      <div>
+        <div class="friccion-titulo">El límite de edad del parque</div>
+        <p class="friccion-desc">Con niños entre 4 y 10 años, Dinópolis funciona muy bien. Cuando en el grupo hay un adolescente o un preadolescente, el riesgo de decepción sube mucho. No porque el contenido sea malo, sino porque ya no les sorprende de la misma manera. Esto tiene una consecuencia directa: la familia que vino cuando los niños eran pequeños no vuelve cuando crecen. Es el principal vector de pérdida de visitante repetidor.</p>
+        <span class="friccion-cita">"Solo el pequeño ha disfrutado un poco." · "El Último Minuto es un aburrimiento."</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bloque-oscuro">
+    <span class="bk">Cómo usar estas fricciones en campo</span>
+    <p>No son una lista para confirmar. Son un radar. Si alguna aparece en una conversación, toma nota de cómo la describe esa persona, en qué momento del día ocurrió, con qué palabras exactas lo dice. Y si en el campo aparece algo que no está en esta lista, es probablemente lo más importante que podéis traer.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     05 · LAS SIETE HIPÓTESIS
+═══════════════════════════════════ -->
+<section class="seccion" id="s5">
+  <span class="sec-kicker">05 · Las siete hipótesis de trabajo</span>
+  <h2 class="sec-titulo">Lo que creemos y necesitamos contrastar</h2>
+  <p class="sec-intro">Una hipótesis no es una conclusión: es una pregunta con forma de afirmación. Estas siete nacen de cruzar los datos de la investigación previa con lo que el equipo interno de Dinópolis nos ha transmitido en las reuniones. El campo tiene que decir si van bien encaminadas, si hay que matizarlas o si hay que tirarlas.</p>
+
+  <div class="hipotesis">
+
+    <div class="hipot">
+      <div class="hipot-cod">H1</div>
+      <div>
+        <p class="hipot-txt">La experiencia de Dinópolis tiene mucho más valor del que el visitante de primera vez puede anticipar desde fuera. El problema no es la propuesta: es que cuesta leerla entera si nadie te ayuda a organizarla.</p>
+        <span class="hipot-pista">Señal en campo: ¿sabían realmente qué era Dinópolis antes de llegar? ¿La visita fue mejor o peor de lo que esperaban?</span>
+      </div>
+    </div>
+
+    <div class="hipot">
+      <div class="hipot-cod">H2</div>
+      <div>
+        <p class="hipot-txt">Los buenos datos de satisfacción esconden un perfil de visitante que los datos no capturan: el que se va antes de terminar la visita, frustrado o decepcionado. No aparece en las encuestas porque nadie le pregunta.</p>
+        <span class="hipot-pista">Señal en campo: si alguien sale pronto, es la conversación más valiosa del día. Buscad activamente a quien se marcha antes de tiempo.</span>
+      </div>
+    </div>
+
+    <div class="hipot">
+      <div class="hipot-cod">H3</div>
+      <div>
+        <p class="hipot-txt">El equilibrio entre ciencia y ocio que ha definido Dinópolis sigue siendo válido. Pero el lado emocional —la sorpresa, el impacto físico, el recuerdo que se cuenta— necesita más peso del que tiene ahora.</p>
+        <span class="hipot-pista">Señal en campo: ¿qué citan primero cuando hablan de lo mejor del día? ¿Es algo que aprendieron o algo que sintieron?</span>
+      </div>
+    </div>
+
+    <div class="hipot">
+      <div class="hipot-cod">H4</div>
+      <div>
+        <p class="hipot-txt">Poner más señales no va a resolver el problema de orientación. Lo que falta es un diseño de decisiones: qué hace el visitante antes de llegar, al entrar y, sobre todo, en los minutos después de cada espectáculo.</p>
+        <span class="hipot-pista">Señal en campo: ¿qué hicieron justo después del primer espectáculo? ¿Tenían claro adónde ir o hubo duda?</span>
+      </div>
+    </div>
+
+    <div class="hipot">
+      <div class="hipot-cod">H5</div>
+      <div>
+        <p class="hipot-txt">Comer, comprar en la tienda o toparse con una cola larga no son detalles secundarios: condicionan el recuerdo de toda la jornada y la probabilidad de recomendar el parque a otros.</p>
+        <span class="hipot-pista">Señal en campo: ¿cómo influyó la comida en el ánimo del grupo? ¿En qué momento del día el estado emocional cambió para peor?</span>
+      </div>
+    </div>
+
+    <div class="hipot">
+      <div class="hipot-cod">H6</div>
+      <div>
+        <p class="hipot-txt">El equipo de Dinópolis sabe cosas sobre el comportamiento del visitante que no están escritas en ningún sitio. Las han aprendido a base de años y de estar ahí. Una parte importante de este proyecto es sacar ese conocimiento a la superficie.</p>
+        <span class="hipot-pista">Señal en campo: ¿en qué momentos el personal resuelve cosas que el parque por sí solo no resuelve? ¿Dónde son imprescindibles?</span>
+      </div>
+    </div>
+
+    <div class="hipot">
+      <div class="hipot-cod">H7</div>
+      <div>
+        <p class="hipot-txt">No todo requiere inversión grande. Hay mejoras que se pueden hacer pronto y con poco —comunicar restricciones antes de que el visitante llegue, diseñar mejor el momento post-espectáculo— y otras que necesitan tiempo y presupuesto. Conviene saber cuáles son cuáles.</p>
+        <span class="hipot-pista">Señal en campo: cuando alguien proponga una mejora, explorar si sería algo pequeño o algo grande. Las dos respuestas son igualmente valiosas.</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     06 · LOS DOS MODOS DE CAMPO
+═══════════════════════════════════ -->
+<section class="seccion" id="s6">
+  <span class="sec-kicker">06 · Qué buscamos en campo</span>
+  <h2 class="sec-titulo">Safari de comportamiento y entrevistas en profundidad</h2>
+  <p class="sec-intro">El trabajo de campo funciona en dos modos distintos que se pueden alternar a lo largo del día. No son excluyentes: lo importante es que en cada momento tengáis claro cuál estáis haciendo y por qué.</p>
+
+  <div class="modo-campo modo-safari">
+    <div class="modo-header">
+      <span class="modo-badge">Modo A</span>
+      <span class="modo-titulo">Safari de comportamiento · observación activa</span>
+    </div>
+    <div class="modo-body">
+      <p>Ver sin intervenir. La gente hace cosas que no diría si le preguntaras. Lo que una familia hace en los tres minutos después de salir de un espectáculo —a dónde va, si mira el plano, si pregunta a alguien, si se para y espera a ver adónde va el grupo de al lado— dice más que cualquier encuesta de satisfacción.</p>
+      <div class="modo-item"><div class="modo-item-n">→</div>Posicionarse en puntos de decisión: salidas de espectáculos, cruce de caminos, entrada al museo, zona de restauración</div>
+      <div class="modo-item"><div class="modo-item-n">→</div>Anotar comportamientos, no interpretaciones. "Familia parada 3 minutos mirando el mapa" es un dato. "Familia desorientada" es una lectura. Las dos tienen valor, pero son cosas distintas</div>
+      <div class="modo-item"><div class="modo-item-n">→</div>Cronometrar cuando tenga sentido: cuánto tardan en decidir qué hacer, cuánto esperan en la cola de restauración, en qué momento del día el ritmo del grupo empieza a decaer</div>
+      <div class="modo-item"><div class="modo-item-n">→</div>Observar cómo interactúa la gente con el personal: quién pregunta, qué pregunta, qué cara pone cuando le responden</div>
+      <div class="modo-item"><div class="modo-item-n">→</div>Fotografiar cuando sea pertinente y discreto: señalética, colas, momentos de saturación, zonas que la gente evita o donde se acumula</div>
+    </div>
+  </div>
+
+  <div class="modo-campo modo-entrev">
+    <div class="modo-header">
+      <span class="modo-badge" style="background:rgba(13,147,95,.2);color:#4ecb9a">Modo B</span>
+      <span class="modo-titulo">Entrevistas en profundidad · conversación cualitativa</span>
+    </div>
+    <div class="modo-body">
+      <p>Hablar con visitantes, pero no encuestarles. La diferencia es enorme. Una encuesta recoge opiniones; una conversación recoge experiencias. Lo que buscamos no es saber si les ha gustado: es entender qué ha pasado de verdad, qué esperaban, qué les ha sorprendido y qué se llevan a casa.</p>
+      <div class="modo-item"><div class="modo-item-n">→</div>El mejor momento es al final de la visita, antes del aparcamiento. Ya tienen perspectiva de todo el día y todavía están en el contexto físico y emocional</div>
+      <div class="modo-item"><div class="modo-item-n">→</div>Arrancar siempre desde algo concreto y neutral: "¿Han terminado ya la visita o les queda algo?" No hay trampa: es una pregunta real que abre la conversación sin forzarla</div>
+      <div class="modo-item"><div class="modo-item-n">→</div>Buscar a quien sale pronto. Son los más difíciles de encontrar y los más valiosos: los que las encuestas no capturan</div>
+      <div class="modo-item"><div class="modo-item-n">→</div>Cuando alguien termina de hablar, esperar tres segundos antes de hacer la siguiente pregunta. Lo que añaden en ese silencio suele ser lo más interesante</div>
+      <div class="modo-item"><div class="modo-item-n">→</div>Las citas literales se anotan exactamente como se dicen, con las palabras de esa persona. No parafraséis todavía: eso viene después</div>
+    </div>
+  </div>
+
+  <div class="bloque-dorado">
+    <p><strong>Lo que buscamos no son datos: son frases.</strong> Tenemos estadísticas. Lo que no tenemos es lo que dijo una madre mientras salía con los niños agotados. Frases como "salió diciendo que quería ser paleontólogo" o "eso es lo que quieres, que no te quedes frío" son las que cambian el tono de una reunión con el cliente. Eso es lo que hay que traer.</p>
+  </div>
+
+  <h3 style="font-family:var(--fl);font-size:1.1rem;font-weight:400;color:var(--ink);margin:1.5rem 0 .8rem">Los momentos clave del día · dónde estar</h3>
+
+  <div class="momentos">
+    <div class="momento">
+      <div class="momento-titulo">Entrada al parque · primeros 15 minutos</div>
+      <p class="momento-desc">Es cuando la incertidumbre es máxima para quien viene por primera vez. ¿Consultan el mapa nada más entrar? ¿Preguntan al personal o deciden solos? ¿Qué hacen primero? Si podéis hablar con alguien antes de que empiece la visita, preguntadle qué espera ver y cuánto tiempo tiene: os dará la referencia para entender todo lo que cuente al salir.</p>
+    </div>
+    <div class="momento">
+      <div class="momento-titulo">Salida de espectáculos · el momento de decisión</div>
+      <p class="momento-desc">Aquí es donde mejor se ve la fricción F3. El espectáculo termina, la gente sale y tiene que decidir qué hace a continuación sin que nadie le ayude a decidirlo. Quedaos quietos al menos cinco minutos y observad: cuánto tardan, qué hacen, si hay quién tira del grupo o si se dispersan solos.</p>
+    </div>
+    <div class="momento">
+      <div class="momento-titulo">Mediodía y restauración · cuando el cansancio tiene hambre</div>
+      <p class="momento-desc">Los niños llevan horas en el parque y tienen hambre. Es el momento donde más se amplifican las fricciones: colas, precios, la sensación de no tener alternativa. Si podéis hablar con alguien mientras espera en la cola, suele haber más honestidad que al final del día.</p>
+    </div>
+    <div class="momento">
+      <div class="momento-titulo">Salida del parque · con el día ya cerrado</div>
+      <p class="momento-desc">El mejor momento para las conversaciones largas. La visita ya tiene forma completa en la cabeza del visitante y todavía están dentro del estado emocional. Posicionaos antes del aparcamiento: es donde la gente aminora el paso y hay más disposición a hablar.</p>
+    </div>
+    <div class="momento">
+      <div class="momento-titulo">Visitantes que salen pronto · los más valiosos</div>
+      <p class="momento-desc">Si veis a alguien saliendo antes de mediodía o a media tarde, id a hablar con ellos. No hace falta un guion elaborado: "¿Ya os vais? ¿Ha ido bien?" es suficiente para abrir la conversación. Son los que los datos actuales no recogen y los que más pueden enseñarnos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     07 · PROTOCOLO DEL DÍA
+═══════════════════════════════════ -->
+<section class="seccion" id="s7">
+  <span class="sec-kicker">07 · Protocolo del día en Dinópolis</span>
+  <h2 class="sec-titulo">Cómo organizamos la jornada de campo</h2>
+  <p class="sec-intro">El día que vayáis a Dinópolis tenéis que hacer dos cosas a la vez que normalmente se hacen por separado: vivir la visita como visitantes y observarla como investigadores. No es fácil, pero tampoco es tan difícil si os lo preparáis antes.</p>
+
+  <div class="pasos">
+    <div class="paso">
+      <div class="paso-n">1</div>
+      <div>
+        <div class="paso-titulo">Antes de entrar · 15 minutos en el aparcamiento</div>
+        <p class="paso-desc">No entréis corriendo. Quedaos un momento fuera, repasad las fricciones y las hipótesis, acordad quién hace qué en cada tramo del día. Si sois más de dos, decidid quién se queda a observar la salida de un espectáculo mientras el otro busca conversaciones. Abrid la libreta y asignad el código de la primera entrevista antes de cruzar la entrada.</p>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="paso-n">2</div>
+      <div>
+        <div class="paso-titulo">Llegada · mirar lo que el equipo ya no ve</div>
+        <p class="paso-desc">El acceso, las taquillas, el primer contacto con el personal: son momentos que el equipo de Dinópolis vive tan automatizados que ya no los percibe. Vosotros sí podéis. Observad cómo llegan las familias, si hay confusión con las colas, qué hace la gente en los primeros metros después de entrar.</p>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="paso-n">3</div>
+      <div>
+        <div class="paso-titulo">Mañana · ser visitantes con los ojos abiertos</div>
+        <p class="paso-desc">Haced el recorrido como lo haría cualquier familia. Pero anotad: qué decisiones os cuestan, dónde dudáis, qué momentos os sorprenden, qué os decepciona. No hace falta que sea exhaustivo ni ordenado: una frase, una impresión, una pregunta que os surge. Eso también es datos.</p>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="paso-n">4</div>
+      <div>
+        <div class="paso-titulo">Mediodía · comer en el parque aunque sea caro</div>
+        <p class="paso-desc">Sí, es parte de la investigación. Comed allí, pasad por la cola, pagad lo que pidan. Observad los tiempos, la oferta, el estado de ánimo de las familias alrededor. Si hay conversaciones interesantes cerca, anotad. Si hay tensión visible, anotad también eso.</p>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="paso-n">5</div>
+      <div>
+        <div class="paso-titulo">Tarde · zona de salida, al menos 90 minutos</div>
+        <p class="paso-desc">Es donde más conversaciones podréis tener. Acercaos a familias que salen, presentaos brevemente —"Estamos haciendo un estudio para mejorar la experiencia del parque"— y empezad con algo concreto y sin trampa. Buscad especialmente a quien sale antes de las 17h sin haber terminado la visita.</p>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="paso-n">6</div>
+      <div>
+        <div class="paso-titulo">Después · antes de subir al coche</div>
+        <p class="paso-desc">Cinco minutos de debrief oral antes de arrancar. ¿Qué ha sido lo más sorprendente del día? ¿Qué frase no podéis olvidar? ¿Qué hipótesis ha cambiado? Luego, en la libreta, la pantalla de cierre: hipótesis marcadas, fricciones detectadas, citas anotadas. Antes de que el día se enfríe.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloque-oscuro">
+    <span class="bk">La única regla imprescindible del día</span>
+    <p>Inmediatamente después de cada conversación, antes de hablar con nadie, anotad una sola cosa: la frase más importante que ha dicho esa persona. No la que os ha parecido más interesante en abstracto: la que os ha dejado pensando. En diez minutos esa frase se mezcla con las demás y se pierde. En diez segundos queda fijada para siempre.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     08 · LA HERRAMIENTA
+═══════════════════════════════════ -->
+<section class="seccion" id="s8">
+  <span class="sec-kicker">08 · La herramienta de campo</span>
+  <h2 class="sec-titulo">La libreta de campo · cómo usarla</h2>
+  <p class="sec-intro">SATIL ha construido una herramienta digital específica para este proyecto. Está pensada para usarse con el móvil en campo, sin instalar nada, y funciona igual de bien bajo el sol que con poca luz dentro del parque.</p>
+
+  <div class="bloque-ok">
+    <span class="bk">URL de la herramienta</span>
+    <p><strong>https://satilestudio.github.io/dino-campo/</strong><br>Ábrela en Chrome en el iPhone y añádela a la pantalla de inicio. Así la tienes como si fuera una app y no tienes que buscarla cada vez.</p>
+  </div>
+
+  <p>Tres pantallas. Sin más. Así funciona:</p>
+
+  <div class="tarjetas">
+    <div class="tarjeta">
+      <div class="tarjeta-num">1</div>
+      <div>
+        <div class="tarjeta-titulo">Inicio · dos minutos antes de empezar</div>
+        <p class="tarjeta-desc">Código de entrevista, fecha, perfil del visitante, composición del grupo y de dónde vienen. Sin esto, al final del día todas las entrevistas se mezclan y pierden contexto.</p>
+      </div>
+    </div>
+    <div class="tarjeta">
+      <div class="tarjeta-num">2</div>
+      <div>
+        <div class="tarjeta-titulo">Entrevista · el guion está, pero no hace falta llevarlo en la mano</div>
+        <p class="tarjeta-desc">El centro de la pantalla es un área de notas libre. El guion de 20 preguntas se despliega si lo necesitáis, pero la idea es que la conversación fluya. Hay un campo específico para anotar citas literales exactamente como se dicen.</p>
+      </div>
+    </div>
+    <div class="tarjeta">
+      <div class="tarjeta-num">3</div>
+      <div>
+        <div class="tarjeta-titulo">Cierre · hipótesis y envío inmediato</div>
+        <p class="tarjeta-desc">Las siete hipótesis con un toque: validada, a ajustar o no aplica. Las fricciones y el valor detectado. Y el botón de enviar a proyectos@satil.es. Inmediatamente después de cada entrevista, no al final del día.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloque-dorado">
+    <p><strong>Sobre pedir permiso para grabar.</strong> La libreta permite grabar audio si la persona lo acepta. Pedirlo es más sencillo de lo que parece: "¿Te importa si grabo la conversación para no perder nada? Es solo para uso interno." La mayoría dice que sí. Si alguien dice que no, no pasa nada: las notas escritas son más que suficientes.</p>
+  </div>
+
+  <div class="bloque-warn">
+    <span class="bk">Una cosa importante sobre el envío</span>
+    <p>La libreta guarda los datos en el móvil automáticamente, pero eso no los hace llegar a SATIL. Para eso hay que pulsar "Enviar todo" en la pantalla de cierre. Hacedlo después de cada entrevista, no al final del día: los datos acumulados se confunden, los detalles se pierden y la síntesis pierde precisión.</p>
+  </div>
+</section>
+
+</div><!-- /main -->
+
+<!-- ═══════════════════════════════════
+     PIE
+═══════════════════════════════════ -->
+<div class="pie">
+  <p><strong>SATIL Estudio SL</strong> · Dinópolis 25º · Diseño de servicios · Fase 2A<br>
+  CADI / PAIP 2026 · Gobierno de Aragón<br>
+  Documento interno · Uso restringido al equipo del proyecto · Junio 2026</p>
+</div>
+
+<script>
+function ir(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var y = el.getBoundingClientRect().top + window.pageYOffset - 16;
+  window.scrollTo({ top: y, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
